@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Toulouse Cafe and Bar",
+        "price": "$$$",
+        "rating": 4.3
+    },
+    {
+        "name": "BJ's Restaurant & Brewhouse",
+        "price": "$$",
+        "rating": 4.2
+    },
+    {
+        "name": "Topgolf",
+        "price": "$$",
+        "rating": 4.5
+    },
+    {
+        "name": "Jim's",
+        "price": "$",
+        "rating": 4.2
+    },
+    {
+        "name": "Grand Lux Cafe",
+        "price": "$$",
+        "rating": 4.3
+    },
+    {
+        "name": "Second Bar + Kitchen",
+        "price": "$$$",
+        "rating": 4.3
+    }
+]

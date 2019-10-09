@@ -4,16 +4,16 @@ import Meta from "../components/SEO/Meta"
 import Facebook from "../components/SEO/Facebook"
 import Twitter from "../components/SEO/Twitter"
 
-const About = () => {
+const History = () => {
     return (
         <Layout>
-            <Meta title="about"/>
+            <Meta title="history"/>
             <Facebook/>
             <Twitter/>
 
-            <h1>about</h1>
+            <h1>history</h1>
         </Layout>
     )
 }
 
-export default About
+export default History

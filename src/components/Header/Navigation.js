@@ -18,7 +18,7 @@ const Navigation = () => {
     return (
         <StyledNavigation>
             <Link to="/">HOME</Link>
-            <Link to="/about">ABOUT</Link>
+            <Link to="/history">HISTORY</Link>
         </StyledNavigation>
     )
 }
