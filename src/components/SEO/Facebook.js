@@ -3,11 +3,11 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 
 const Facebook = ({
-    url = "https://the-great-gatsby-starter.netlify.com",
+    url = "https://adobe-lunch.netlify.com",
     type = "website",
-    title = "gatsby starter",
-    description = "🥂 the great gatsby starter",
-    image = "https://the-great-gatsby-starter.netlify.com/facebook.png",
+    title = "Adobe Lunch",
+    description = "🥪 Adobe Lunch",
+    image = "https://adobe-lunch.netlify.com/facebook.png",
 }) => {
     return (
         <Helmet>

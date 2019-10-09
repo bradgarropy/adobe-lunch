@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://the-great-gatsby-starter.netlify.com">
+    <a href="https://adobe-lunch.netlify.com">
         <img alt="🥪 adobe lunch" src="/static/icon.png" width="150">
     </a>
 </p>

@@ -5,9 +5,9 @@ import Helmet from "react-helmet"
 const Twitter = ({
     card = "summary",
     site = "@bradgarropy",
-    title = "gatsby starter",
-    description = "🥂 the great gatsby starter",
-    image = "https://the-great-gatsby-starter.netlify.com/twitter.png",
+    title = "Adobe Lunch",
+    description = "🥪 Adobe Lunch",
+    image = "https://adobe-lunch.netlify.com/twitter.png",
 }) => {
     return (
         <Helmet>
