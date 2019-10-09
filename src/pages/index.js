@@ -7,7 +7,7 @@ import Twitter from "../components/SEO/Twitter"
 const Index = () => {
     return (
         <Layout>
-            <Meta title="gatsby starter"/>
+            <Meta title="Adobe Lunch"/>
             <Facebook/>
             <Twitter/>
 
