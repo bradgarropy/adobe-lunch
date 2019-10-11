@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const Location = ({location}) => {
-    const {name, rating, price} = location
+const Venue = ({venue}) => {
+    const {name, rating, price} = venue
 
     return (
         <div>
@@ -13,8 +13,8 @@ const Location = ({location}) => {
     )
 }
 
-Location.propTypes = {
-    location: PropTypes.object.isRequired,
+Venue.propTypes = {
+    venue: PropTypes.object.isRequired,
 }
 
-export default Location
+export default Venue

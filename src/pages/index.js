@@ -4,16 +4,21 @@ import Layout from "../components/Layout"
 import Meta from "../components/SEO/Meta"
 import Facebook from "../components/SEO/Facebook"
 import Twitter from "../components/SEO/Twitter"
-import Location from "../components/Location"
+import Venue from "../components/Venue"
 import {getRandomElement} from "../utils/utils"
-import locations from "../data/locations"
+import {venueSearch} from "../utils/foursquare"
 
 const Index = () => {
-    const [location, setLocation] = useState()
+    const [venue, setVenue] = useState()
 
-    const onClick = () => {
-        const location = getRandomElement(locations)
-        setLocation(location)
+    const onClick = async() => {
+        const data = await venueSearch()
+        const {venues} = data.response
+
+        const venue = getRandomElement(venues)
+        console.log(venue)
+
+        setVenue(venue)
     }
 
     return (
@@ -23,7 +28,7 @@ const Index = () => {
             <Twitter/>
 
             <button onClick={onClick}>TELL ME WHERE TO EAT</button>
-            {location && <Location location={location}/>}
+            {venue && <Venue venue={venue}/>}
         </Layout>
     )
 }
