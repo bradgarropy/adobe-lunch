@@ -6,17 +6,21 @@ import Facebook from "../components/SEO/Facebook"
 import Twitter from "../components/SEO/Twitter"
 import Venue from "../components/Venue"
 import {getRandomElement} from "../utils/utils"
-import {venueSearch} from "../utils/foursquare"
+import {venueSearch, venueDetails} from "../utils/foursquare"
 
 const Index = () => {
     const [venue, setVenue] = useState()
 
     const onClick = async() => {
-        const data = await venueSearch()
+        let data
+
+        data = await venueSearch()
         const {venues} = data.response
 
-        const venue = getRandomElement(venues)
-        console.log(venue)
+        const {id} = getRandomElement(venues)
+
+        data = await venueDetails(id)
+        const {venue} = data.response
 
         setVenue(venue)
     }

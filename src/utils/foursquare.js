@@ -1,6 +1,7 @@
+import {queryParams} from "./utils"
+
 const BASE = "https://api.foursquare.com/v2"
 const GROUP = "venues"
-const ENDPOINT = "search"
 const VERSION = "20191010"
 
 const venueSearch = async({
@@ -11,7 +12,7 @@ const venueSearch = async({
     limit = 50,
     categoryId = "4d4b7105d754a06374d81259",
 } = {}) => {
-    const api = `${BASE}/${GROUP}/${ENDPOINT}`
+    const api = `${BASE}/${GROUP}/search`
 
     const params = {
         client_id: process.env.GATSBY_CLIENT_ID,
@@ -24,9 +25,7 @@ const venueSearch = async({
         categoryId,
     }
 
-    const query = Object.keys(params)
-        .map(key => `${key}=${params[key]}`)
-        .join("&")
+    const query = queryParams(params)
 
     const url = `${api}?${query}`
 
@@ -36,6 +35,23 @@ const venueSearch = async({
     return data
 }
 
-const venueDetails = () => {}
+const venueDetails = async id => {
+    const api = `${BASE}/${GROUP}`
+
+    const params = {
+        client_id: process.env.GATSBY_CLIENT_ID,
+        client_secret: process.env.GATSBY_CLIENT_SECRET,
+        v: VERSION,
+    }
+
+    const query = queryParams(params)
+
+    const url = `${api}/${id}?${query}`
+
+    const response = await fetch(url)
+    const data = await response.json()
+
+    return data
+}
 
 export {venueSearch, venueDetails}
