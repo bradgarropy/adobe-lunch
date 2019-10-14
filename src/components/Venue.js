@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import PriceMeter from "./PriceMeter"
 
 const Venue = ({venue}) => {
     console.log(venue)
@@ -31,7 +32,7 @@ const Venue = ({venue}) => {
             ))}
 
             {rating && <p>{rating}</p>}
-            {price && <p>{"💲".repeat(price.tier)}</p>}
+            <PriceMeter price={price}/>
 
             <p>{contact.formattedPhone}</p>
 
