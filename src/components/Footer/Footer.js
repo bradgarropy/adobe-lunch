@@ -2,23 +2,16 @@ import React from "react"
 import styled from "styled-components"
 import BuiltBy from "./BuiltBy"
 
-const StyledFooter = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: ${({theme}) => theme.colors.lightPurple};
+const StyledFooter = styled.footer`
+    display: grid;
+    justify-content: end;
     color: ${({theme}) => theme.colors.black};
-    padding: 1.5rem;
-
-    p {
-        margin: 0;
-    }
+    padding: 12px 16px;
 `
 
 const Footer = () => {
     return (
         <StyledFooter>
-            <p>FOOTER</p>
             <BuiltBy/>
         </StyledFooter>
     )
