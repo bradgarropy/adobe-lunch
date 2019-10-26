@@ -1,7 +1,11 @@
 import styled from "styled-components"
 
-const Container = styled.div`
-    margin: 1rem 2rem;
+const Container = styled.main`
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 50px;
 `
 
 export default Container

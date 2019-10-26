@@ -1,8 +1,9 @@
 const colors = {
-    darkPurple: "#663399",
-    lightPurple: "#ccb3e6",
-    white: "#ffffff",
-    black: "#000000",
+    black: "hsl(0, 0%, 0%)",
+    black90: "hsl(0, 0%, 90%)",
+    black75: "hsl(0, 0%, 75%)",
+    red: "hsl(0, 100%, 50%)",
+    white: "hsl(0, 0%, 100%)",
 }
 
 export default colors

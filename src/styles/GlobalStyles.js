@@ -4,6 +4,10 @@ const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
     }
+
+    p {
+        margin: 0;
+    }
 `
 
 export default GlobalStyles
