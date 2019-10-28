@@ -79,11 +79,11 @@ const Venue = ({venue}) => {
                     <Button>DIRECTIONS</Button>
                 </a>
 
-                {menu ? (
+                {menu && (
                     <a href={menu.url}>
                         <Button secondary>MENU</Button>
                     </a>
-                ) : null}
+                )}
             </Actions>
         </StyledVenue>
     )
