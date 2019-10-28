@@ -2,8 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-const Placeholder = styled.span`
-    opacity: 0.2;
+const Dollar = styled.span`
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: ${({theme, empty}) =>
+        empty ? theme.colors.black90 : theme.colors.black};
 `
 
 const PriceMeter = ({price}) => {
@@ -14,10 +17,10 @@ const PriceMeter = ({price}) => {
     const {tier} = price
 
     return (
-        <p>
-            <span>{"💲".repeat(tier)}</span>
-            <Placeholder>{"💲".repeat(4 - tier)}</Placeholder>
-        </p>
+        <span>
+            <Dollar>{"$".repeat(tier)}</Dollar>
+            <Dollar empty>{"$".repeat(4 - tier)}</Dollar>
+        </span>
     )
 }
 

@@ -1,6 +1,43 @@
 import React from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
+import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
+import Button from "../styles/Button"
+
+const StyledVenue = styled.div`
+    display: grid;
+    justify-items: start;
+    justify-content: center;
+`
+
+const VenueTitle = styled.h2`
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 0 0;
+`
+
+const VenueCategories = styled.span`
+    font-size: 14px;
+    color: ${({theme}) => theme.colors.black75};
+    margin: 0 0 10px 0;
+`
+
+const Ratings = styled.div`
+    display: grid;
+    grid-auto-flow: column;
+    justify-self: stretch;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 130px 0;
+`
+
+const Actions = styled.div`
+    display: grid;
+    grid-auto-flow: column;
+    justify-self: stretch;
+    justify-content: space-between;
+`
 
 const Venue = ({venue}) => {
     console.log(venue)
@@ -8,55 +45,47 @@ const Venue = ({venue}) => {
     const {
         name,
         rating,
+        ratingColor,
         price,
         bestPhoto,
-        url,
-        contact,
-        hours,
-        location,
         menu,
         categories,
     } = venue
 
     return (
-        <div>
+        <StyledVenue>
             <img
                 src={`${bestPhoto.prefix}300x300${bestPhoto.suffix}`}
                 alt={name}
             />
 
-            <a href={url}>{name}</a>
+            <VenueTitle>{name}</VenueTitle>
 
-            {categories.map(category => (
-                <p key={category.id}>{category.shortName}</p>
-            ))}
+            <VenueCategories>
+                {categories.map(category => category.shortName).join(", ")}
+            </VenueCategories>
 
-            {rating && <p>{rating}</p>}
-            <PriceMeter price={price}/>
+            <Ratings>
+                <PriceMeter price={price}/>
+                <Rating rating={rating} color={ratingColor}/>
+            </Ratings>
 
-            <p>{contact.formattedPhone}</p>
+            <Actions>
+                <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                        name,
+                    )}`}
+                >
+                    <Button>DIRECTIONS</Button>
+                </a>
 
-            <a href={`https://facebook.com/${contact.facebookUsername}`}>
-                Facebook
-            </a>
-            <a href={`https://twitter.com/${contact.twitter}`}>Twitter</a>
-            <a href={`https://instagram.com/${contact.instagram}`}>Instagram</a>
-
-            {hours && <p>{hours.status}</p>}
-
-            <p>{location.formattedAddress[0]}</p>
-            <p>{location.formattedAddress[1]}</p>
-
-            <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    name,
-                )}`}
-            >
-                Directions
-            </a>
-
-            {menu && <a href={menu.url}>Menu</a>}
-        </div>
+                {menu ? (
+                    <a href={menu.url}>
+                        <Button secondary>MENU</Button>
+                    </a>
+                ) : null}
+            </Actions>
+        </StyledVenue>
     )
 }
 
