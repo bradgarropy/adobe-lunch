@@ -43,14 +43,17 @@ const Venue = ({venue}) => {
     console.log(venue)
 
     const {
+        bestPhoto,
         name,
+        categories,
+        price,
         rating,
         ratingColor,
-        price,
-        bestPhoto,
+        location,
         menu,
-        categories,
     } = venue
+
+    const {lat, lng} = location
 
     return (
         <StyledVenue>
@@ -66,15 +69,13 @@ const Venue = ({venue}) => {
             </VenueCategories>
 
             <Ratings>
-                <PriceMeter price={price}/>
-                <Rating rating={rating} color={ratingColor}/>
+                <PriceMeter price={price} />
+                <Rating rating={rating} color={ratingColor} />
             </Ratings>
 
             <Actions>
                 <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                        name,
-                    )}`}
+                    href={`https://www.google.com/maps/dir/?api=1&origin=30.401964,-97.723780&destination=${lat},${lng}&travelmode=walking&dir_action=navigate`}
                 >
                     <Button>DIRECTIONS</Button>
                 </a>

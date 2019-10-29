@@ -21,14 +21,14 @@ const StyledEmpty = styled.div`
 const Empty = () => (
     <StyledEmpty>
         <p>Where to eat?</p>
-        <Foursquare/>
+        <Foursquare />
     </StyledEmpty>
 )
 
 const Index = () => {
     const [venue, setVenue] = useState()
 
-    const onClick = async() => {
+    const onClick = async () => {
         let data
 
         data = await venueSearch()
@@ -44,15 +44,15 @@ const Index = () => {
 
     return (
         <Layout>
-            <Meta title="Adobe Lunch"/>
-            <Facebook/>
-            <Twitter/>
+            <Meta title="Adobe Lunch" />
+            <Facebook />
+            <Twitter />
 
             {venue ? (
-                <Venue venue={venue}/>
+                <Venue venue={venue} />
             ) : (
                 <>
-                    <Empty/>
+                    <Empty />
                     <Button onClick={onClick}>TELL ME</Button>
                 </>
             )}
