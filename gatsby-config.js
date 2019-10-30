@@ -31,7 +31,7 @@ module.exports = {
                 start_url: "/",
                 background_color: "#ffffff",
                 theme_color: "#ffffff",
-                display: "minimal-ui",
+                display: "standalone",
                 icon: "static/android-chrome-192x192.png",
             },
         },
