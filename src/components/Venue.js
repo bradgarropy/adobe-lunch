@@ -69,19 +69,25 @@ const Venue = ({venue}) => {
             </VenueCategories>
 
             <Ratings>
-                <PriceMeter price={price} />
-                <Rating rating={rating} color={ratingColor} />
+                <PriceMeter price={price}/>
+                <Rating rating={rating} color={ratingColor}/>
             </Ratings>
 
             <Actions>
                 <a
                     href={`https://www.google.com/maps/dir/?api=1&origin=30.401964,-97.723780&destination=${lat},${lng}&travelmode=walking&dir_action=navigate`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
                     <Button>DIRECTIONS</Button>
                 </a>
 
                 {menu && (
-                    <a href={menu.url}>
+                    <a
+                        href={menu.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <Button secondary>MENU</Button>
                     </a>
                 )}
