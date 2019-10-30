@@ -23,7 +23,7 @@ module.exports = {
                 background_color: "#ffffff",
                 theme_color: "#ffffff",
                 display: "minimal-ui",
-                icon: "static/icon.png",
+                icon: "static/android-chrome-192x192.png",
             },
         },
         {

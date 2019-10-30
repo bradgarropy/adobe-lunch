@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://adobe-lunch.netlify.com">
-        <img alt="🥪 adobe lunch" src="/static/icon.png" width="150">
+        <img alt="🥪 adobe lunch" src="./static/android-chrome-192x192.png" width="150">
     </a>
 </p>
 
