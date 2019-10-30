@@ -35,7 +35,7 @@ const Ratings = styled.div`
 const Actions = styled.div`
     display: grid;
     grid-auto-flow: column;
-    justify-self: stretch;
+    justify-self: ${({multiple}) => (multiple ? "stretch" : "center")};
     justify-content: space-between;
 `
 
@@ -73,7 +73,7 @@ const Venue = ({venue}) => {
                 <Rating rating={rating} color={ratingColor}/>
             </Ratings>
 
-            <Actions>
+            <Actions multiple={menu}>
                 <a
                     href={`https://www.google.com/maps/dir/?api=1&origin=30.401964,-97.723780&destination=${lat},${lng}&travelmode=walking&dir_action=navigate`}
                     target="_blank"
