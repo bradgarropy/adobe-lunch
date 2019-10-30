@@ -30,7 +30,7 @@ const Ratings = styled.div`
     justify-self: stretch;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 130px 0;
+    margin: 0 0 50px 0;
 `
 
 const Actions = styled.div`
@@ -82,8 +82,8 @@ const Venue = ({venue}) => {
             </VenueCategories>
 
             <Ratings>
-                <PriceMeter price={price} />
-                <Rating rating={rating} color={ratingColor} />
+                <PriceMeter price={price}/>
+                <Rating rating={rating} color={ratingColor}/>
             </Ratings>
 
             <Actions multiple={menu}>
