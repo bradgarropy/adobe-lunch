@@ -4,10 +4,19 @@ require("dotenv").config({
 
 module.exports = {
     siteMetadata: {
-        siteUrl: "https://the-great-gatsby-starter.netlify.com",
-        title: "gatsby starter",
-        description: "🥂 the great gatsby starter",
-        keywords: ["gatsby", "react", "scss", "eslint"],
+        siteUrl: "https://adobe-lunch.netlify.com",
+        title: "Adobe Lunch",
+        description: "🥪 lunch, not launch",
+        keywords: [
+            "gatsby",
+            "react",
+            "styled-components",
+            "eslint",
+            "prettier",
+            "adobe",
+            "lunch",
+            "domain",
+        ],
         email: "bradgarropy@gmail.com",
     },
     plugins: [
@@ -17,8 +26,8 @@ module.exports = {
         {
             resolve: "gatsby-plugin-manifest",
             options: {
-                name: "gatsby starter",
-                short_name: "gatsby starter",
+                name: "Adobe Lunch",
+                short_name: "Adobe Lunch",
                 start_url: "/",
                 background_color: "#ffffff",
                 theme_color: "#ffffff",
