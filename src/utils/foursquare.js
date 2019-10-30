@@ -1,12 +1,12 @@
-import {queryParams} from "./utils"
+import {queryParams, LATITUDE, LONGITUDE} from "./utils"
 
 const BASE = "https://api.foursquare.com/v2"
 const GROUP = "venues"
 const VERSION = "20191010"
 
 const venueSearch = async({
-    latitude = "30.401964",
-    longitude = "-97.723780",
+    latitude = LATITUDE,
+    longitude = LONGITUDE,
     intent = "browse",
     radius = 1600,
     limit = 50,

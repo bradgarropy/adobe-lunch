@@ -1,11 +1,11 @@
-import {queryParams} from "./utils"
+import {queryParams, LATITUDE, LONGITUDE} from "./utils"
 
 const BASE = "https://maps.googleapis.com/maps/api"
 const GROUP = "place"
 
-const placeSearch = async ({
-    latitude = "30.401964",
-    longitude = "-97.723780",
+const placeSearch = async({
+    latitude = LATITUDE,
+    longitude = LONGITUDE,
     radius = 1600,
     type = "restaurant",
 } = {}) => {
@@ -44,7 +44,7 @@ const placeDetails = async id => {
     return data
 }
 
-const placePhotos = async ({
+const placePhotos = async({
     reference = "",
     width = 300,
     height = 300,

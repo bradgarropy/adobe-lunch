@@ -1,3 +1,6 @@
+const LATITUDE = "30.401964"
+const LONGITUDE = "-97.723780"
+
 const getRandomElement = array => {
     const index = Math.floor(Math.random() * array.length)
     const element = array[index]
@@ -13,4 +16,4 @@ const queryParams = params => {
     return query
 }
 
-export {getRandomElement, queryParams}
+export {getRandomElement, queryParams, LATITUDE, LONGITUDE}

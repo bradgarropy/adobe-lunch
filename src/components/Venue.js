@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
 import Button from "../styles/Button"
+import {queryParams, LATITUDE, LONGITUDE} from "../utils/utils"
 
 const StyledVenue = styled.div`
     display: grid;
@@ -55,6 +56,18 @@ const Venue = ({venue}) => {
 
     const {lat, lng} = location
 
+    const params = {
+        api: 1,
+        origin: `${LATITUDE},${LONGITUDE}`,
+        destination: `${lat},${lng}`,
+        travelmode: "walking",
+        dir_action: "navigate",
+    }
+
+    const api = "https://www.google.com/maps/dir/"
+    const query = queryParams(params)
+    const url = `${api}?${query}`
+
     return (
         <StyledVenue>
             <img
@@ -69,16 +82,12 @@ const Venue = ({venue}) => {
             </VenueCategories>
 
             <Ratings>
-                <PriceMeter price={price}/>
-                <Rating rating={rating} color={ratingColor}/>
+                <PriceMeter price={price} />
+                <Rating rating={rating} color={ratingColor} />
             </Ratings>
 
             <Actions multiple={menu}>
-                <a
-                    href={`https://www.google.com/maps/dir/?api=1&origin=30.401964,-97.723780&destination=${lat},${lng}&travelmode=walking&dir_action=navigate`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+                <a href={url} target="_blank" rel="noopener noreferrer">
                     <Button>DIRECTIONS</Button>
                 </a>
 
