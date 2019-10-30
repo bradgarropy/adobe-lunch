@@ -13,6 +13,8 @@ const StyledLayout = styled.div`
     grid-template-rows: auto 1fr auto;
     gap: 20px;
     font-family: "Roboto", sans-serif;
+    padding: 12px 16px;
+    box-sizing: border-box;
 `
 
 const Layout = ({children}) => (

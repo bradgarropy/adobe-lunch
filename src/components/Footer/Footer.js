@@ -6,7 +6,6 @@ const StyledFooter = styled.footer`
     display: grid;
     justify-content: end;
     color: ${({theme}) => theme.colors.black};
-    padding: 12px 16px;
 `
 
 const Footer = () => {

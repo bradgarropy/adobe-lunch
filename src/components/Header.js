@@ -8,7 +8,6 @@ const StyledHeader = styled.header`
     justify-content: start;
     align-items: center;
     color: ${({theme}) => theme.colors.black};
-    padding: 12px 16px;
     font-size: 24px;
     gap: 4px;
 `
