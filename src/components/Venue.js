@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import Next from "./Next"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
 import Button from "../styles/Button"
@@ -38,6 +39,7 @@ const Actions = styled.div`
     grid-auto-flow: column;
     justify-self: ${({multiple}) => (multiple ? "stretch" : "center")};
     justify-content: space-between;
+    margin: 0 0 50px 0;
 `
 
 const Venue = ({venue}) => {
@@ -101,6 +103,8 @@ const Venue = ({venue}) => {
                     </a>
                 )}
             </Actions>
+
+            <Next/>
         </StyledVenue>
     )
 }
