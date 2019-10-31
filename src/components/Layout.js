@@ -3,9 +3,10 @@ import PropTypes from "prop-types"
 import styled, {ThemeProvider} from "styled-components"
 import Header from "./Header"
 import Footer from "./Footer/Footer"
+import {PlaceProvider} from "../contexts"
 import theme from "../styles/theme"
-import GlobalStyles from "../styles/GlobalStyles"
 import Container from "../styles/Container"
+import GlobalStyles from "../styles/GlobalStyles"
 
 const StyledLayout = styled.div`
     height: 100vh;
@@ -24,7 +25,11 @@ const Layout = ({children}) => (
 
             <StyledLayout>
                 <Header/>
-                <Container>{children}</Container>
+
+                <PlaceProvider>
+                    <Container>{children}</Container>
+                </PlaceProvider>
+
                 <Footer/>
             </StyledLayout>
         </>

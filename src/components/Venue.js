@@ -1,9 +1,11 @@
 import React from "react"
+import {useContext} from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import Next from "./Next"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
+import {PlaceContext} from "../contexts"
 import Button from "../styles/Button"
 import {queryParams, LATITUDE, LONGITUDE} from "../utils/utils"
 
@@ -42,8 +44,8 @@ const Actions = styled.div`
     margin: 0 0 50px 0;
 `
 
-const Venue = ({venue}) => {
-    console.log(venue)
+const Venue = () => {
+    const {place} = useContext(PlaceContext)
 
     const {
         bestPhoto,
@@ -54,7 +56,7 @@ const Venue = ({venue}) => {
         ratingColor,
         location,
         menu,
-    } = venue
+    } = place
 
     const {lat, lng} = location
 

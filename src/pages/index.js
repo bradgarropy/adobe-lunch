@@ -1,11 +1,11 @@
 import React from "react"
-import {useState} from "react"
+import {useContext} from "react"
 import styled from "styled-components"
-import Layout from "../components/Layout"
 import Meta from "../components/SEO/Meta"
 import Facebook from "../components/SEO/Facebook"
 import Twitter from "../components/SEO/Twitter"
 import Venue from "../components/Venue"
+import {PlaceContext} from "../contexts"
 import {getRandomElement} from "../utils/utils"
 import {venueSearch, venueDetails} from "../utils/foursquare"
 import Button from "../styles/Button"
@@ -26,7 +26,7 @@ const Empty = () => (
 )
 
 const Index = () => {
-    const [venue, setVenue] = useState()
+    const {place, setPlace} = useContext(PlaceContext)
 
     const onClick = async() => {
         let data
@@ -39,24 +39,24 @@ const Index = () => {
         data = await venueDetails(id)
         const {venue} = data.response
 
-        setVenue(venue)
+        setPlace(venue)
     }
 
     return (
-        <Layout>
+        <>
             <Meta title="Adobe Lunch"/>
             <Facebook/>
             <Twitter/>
 
-            {venue ? (
-                <Venue venue={venue}/>
+            {place ? (
+                <Venue venue={place}/>
             ) : (
                 <>
                     <Empty/>
                     <Button onClick={onClick}>TELL ME</Button>
                 </>
             )}
-        </Layout>
+        </>
     )
 }
 
