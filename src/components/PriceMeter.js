@@ -11,7 +11,7 @@ const Dollar = styled.span`
 
 const PriceMeter = ({price}) => {
     if (!price) {
-        return null
+        return <div/>
     }
 
     const {tier} = price
