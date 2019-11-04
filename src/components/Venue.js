@@ -6,6 +6,7 @@ import Next from "./Next"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
 import {PlaceContext} from "../contexts"
+import A from "../styles/A"
 import Button from "../styles/Button"
 import {queryParams, LATITUDE, LONGITUDE} from "../utils/utils"
 
@@ -33,15 +34,14 @@ const Ratings = styled.div`
     justify-self: stretch;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 50px 0;
 `
 
 const Actions = styled.div`
     display: grid;
     grid-auto-flow: column;
-    justify-self: ${({multiple}) => (multiple ? "stretch" : "center")};
+    justify-self: stretch;
     justify-content: space-between;
-    margin: 0 0 50px 0;
+    margin: 50px 0;
 `
 
 const Venue = () => {
@@ -90,20 +90,15 @@ const Venue = () => {
                 <Rating rating={rating} color={ratingColor}/>
             </Ratings>
 
-            <Actions multiple={menu}>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                    <Button>DIRECTIONS</Button>
-                </a>
+            {menu && (
+                <A href={menu.url} target="_blank" rel="noopener noreferrer">
+                    Menu
+                </A>
+            )}
 
-                {menu && (
-                    <a
-                        href={menu.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Button secondary>MENU</Button>
-                    </a>
-                )}
+            <Actions>
+                <Button>YES</Button>
+                <Button>NO</Button>
             </Actions>
 
             <Next/>
