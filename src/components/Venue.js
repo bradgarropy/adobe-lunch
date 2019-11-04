@@ -1,14 +1,12 @@
 import React from "react"
 import {useContext} from "react"
-import PropTypes from "prop-types"
 import styled from "styled-components"
-import Next from "./Next"
+import Icon from "./Frown"
+import Smile from "./Smile"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
 import {PlaceContext} from "../contexts"
 import A from "../styles/A"
-import Button from "../styles/Button"
-import {queryParams, LATITUDE, LONGITUDE} from "../utils/utils"
 
 const StyledVenue = styled.div`
     display: grid;
@@ -38,10 +36,10 @@ const Ratings = styled.div`
 
 const Actions = styled.div`
     display: grid;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
     justify-self: stretch;
-    justify-content: space-between;
-    margin: 50px 0;
+    gap: 24px;
+    margin: 50px 0 0 0;
 `
 
 const Venue = () => {
@@ -54,23 +52,8 @@ const Venue = () => {
         price,
         rating,
         ratingColor,
-        location,
         menu,
     } = place
-
-    const {lat, lng} = location
-
-    const params = {
-        api: 1,
-        origin: `${LATITUDE},${LONGITUDE}`,
-        destination: `${lat},${lng}`,
-        travelmode: "walking",
-        dir_action: "navigate",
-    }
-
-    const api = "https://www.google.com/maps/dir/"
-    const query = queryParams(params)
-    const url = `${api}?${query}`
 
     return (
         <StyledVenue>
@@ -97,17 +80,11 @@ const Venue = () => {
             )}
 
             <Actions>
-                <Button>YES</Button>
-                <Button>NO</Button>
+                <Smile/>
+                <Icon/>
             </Actions>
-
-            <Next/>
         </StyledVenue>
     )
-}
-
-Venue.propTypes = {
-    venue: PropTypes.object.isRequired,
 }
 
 export default Venue

@@ -49,7 +49,7 @@ const Index = () => {
             <Twitter/>
 
             {place ? (
-                <Venue venue={place}/>
+                <Venue/>
             ) : (
                 <>
                     <Empty/>
