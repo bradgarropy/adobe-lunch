@@ -7,11 +7,14 @@ import {
     LONGITUDE,
 } from "../utils/utils"
 import {venueSearch, venueDetails} from "../utils/foursquare"
+import tracker from "../utils/tracker"
 
 const usePlace = () => {
     const {place, setPlace} = useContext(PlaceContext)
 
     const accept = () => {
+        tracker.accept(place.id)
+
         const {lat, lng} = place.location
 
         const params = {
@@ -30,6 +33,8 @@ const usePlace = () => {
     }
 
     const reject = async() => {
+        tracker.reject(place.id)
+
         let data
 
         data = await venueSearch()
