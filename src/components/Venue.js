@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import {useSwipeable} from "react-swipeable"
-import Icon from "./Frown"
+import Frown from "./Frown"
 import Smile from "./Smile"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
@@ -88,7 +88,7 @@ const Venue = () => {
 
             <Actions>
                 <Smile/>
-                <Icon/>
+                <Frown/>
             </Actions>
         </StyledVenue>
     )
