@@ -1,4 +1,5 @@
-import {queryParams} from "./utils"
+const fetch = require("node-fetch")
+const {queryParams} = require("./utils")
 
 const BASE_ID = "app5z2r9qwmnLFp9B"
 const BASE_NAME = "places"
@@ -12,10 +13,10 @@ const list = async filter => {
     const query = queryParams(params)
     const url = `${API}?${query}`
 
-    const headers = new Headers({
+    const headers = {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.GATSBY_AIRTABLE_API_KEY}`,
-    })
+        "Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`,
+    }
 
     const options = {
         method: "GET",
@@ -29,10 +30,10 @@ const list = async filter => {
 }
 
 const create = async id => {
-    const headers = new Headers({
+    const headers = {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.GATSBY_AIRTABLE_API_KEY}`,
-    })
+        "Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`,
+    }
 
     const data = {
         records: [
@@ -59,10 +60,10 @@ const create = async id => {
 }
 
 const update = async(id, fields) => {
-    const headers = new Headers({
+    const headers = {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.GATSBY_AIRTABLE_API_KEY}`,
-    })
+        "Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`,
+    }
 
     const data = {
         records: [
@@ -85,4 +86,8 @@ const update = async(id, fields) => {
     return records
 }
 
-export {list, create, update}
+module.exports = {
+    list,
+    create,
+    update,
+}

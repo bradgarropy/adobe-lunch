@@ -1,28 +1,26 @@
-import {list, create, update} from "../utils/airtable"
-
 const accept = async id => {
-    let records = await list(`{id}="${id}"`)
+    const data = {id}
 
-    if (!records.length) {
-        records = await create(id)
+    const options = {
+        "method": "POST",
+        "Content-Type": "application/json",
+        "body": JSON.stringify(data),
     }
 
-    const record = records[0]
-    update(record.id, {accepted: record.fields.accepted + 1})
-
+    fetch("/.netlify/functions/accept", options)
     return
 }
 
 const reject = async id => {
-    let records = await list(`{id}="${id}"`)
+    const data = {id}
 
-    if (!records.length) {
-        records = await create(id)
+    const options = {
+        "method": "POST",
+        "Content-Type": "application/json",
+        "body": JSON.stringify(data),
     }
 
-    const record = records[0]
-    update(record.id, {rejected: record.fields.rejected + 1})
-
+    fetch("/.netlify/functions/reject", options)
     return
 }
 
