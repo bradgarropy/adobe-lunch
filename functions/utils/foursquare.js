@@ -1,10 +1,11 @@
-import {queryParams, LATITUDE, LONGITUDE} from "./utils"
+const fetch = require("node-fetch")
+const {queryParams, LATITUDE, LONGITUDE} = require("./utils")
 
 const BASE = "https://api.foursquare.com/v2"
 const GROUP = "venues"
 const VERSION = "20191010"
 
-const venueSearch = async({
+const search = async({
     latitude = LATITUDE,
     longitude = LONGITUDE,
     intent = "browse",
@@ -15,8 +16,8 @@ const venueSearch = async({
     const api = `${BASE}/${GROUP}/search`
 
     const params = {
-        client_id: process.env.GATSBY_CLIENT_ID,
-        client_secret: process.env.GATSBY_CLIENT_SECRET,
+        client_id: process.env.FOURSQUARE_CLIENT_ID,
+        client_secret: process.env.FOURSQUARE_CLIENT_SECRET,
         v: VERSION,
         ll: `${latitude},${longitude}`,
         intent,
@@ -35,12 +36,12 @@ const venueSearch = async({
     return data
 }
 
-const venueDetails = async id => {
+const details = async id => {
     const api = `${BASE}/${GROUP}`
 
     const params = {
-        client_id: process.env.GATSBY_CLIENT_ID,
-        client_secret: process.env.GATSBY_CLIENT_SECRET,
+        client_id: process.env.FOURSQUARE_CLIENT_ID,
+        client_secret: process.env.FOURSQUARE_CLIENT_SECRET,
         v: VERSION,
     }
 
@@ -54,4 +55,4 @@ const venueDetails = async id => {
     return data
 }
 
-export {venueSearch, venueDetails}
+module.exports = {search, details}

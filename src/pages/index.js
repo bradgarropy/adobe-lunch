@@ -4,10 +4,10 @@ import styled from "styled-components"
 import Meta from "../components/SEO/Meta"
 import Facebook from "../components/SEO/Facebook"
 import Twitter from "../components/SEO/Twitter"
-import Venue from "../components/Venue"
+import Place from "../components/Place"
 import {PlaceContext} from "../contexts"
+import serverless from "../utils/serverless"
 import {getRandomElement} from "../utils/utils"
-import {venueSearch, venueDetails} from "../utils/foursquare"
 import Button from "../styles/Button"
 import Foursquare from "../images/foursquare.svg"
 
@@ -29,17 +29,11 @@ const Index = () => {
     const {place, setPlace} = useContext(PlaceContext)
 
     const onClick = async() => {
-        let data
+        const places = await serverless.search()
+        const {id} = getRandomElement(places)
 
-        data = await venueSearch()
-        const {venues} = data.response
-
-        const {id} = getRandomElement(venues)
-
-        data = await venueDetails(id)
-        const {venue} = data.response
-
-        setPlace(venue)
+        const newPlace = await serverless.details(id)
+        setPlace(newPlace)
     }
 
     return (
@@ -49,7 +43,7 @@ const Index = () => {
             <Twitter/>
 
             {place ? (
-                <Venue/>
+                <Place/>
             ) : (
                 <>
                     <Empty/>

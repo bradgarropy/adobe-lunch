@@ -6,14 +6,13 @@ import {
     LATITUDE,
     LONGITUDE,
 } from "../utils/utils"
-import {venueSearch, venueDetails} from "../utils/foursquare"
-import tracker from "../utils/tracker"
+import serverless from "../utils/serverless"
 
 const usePlace = () => {
     const {place, setPlace} = useContext(PlaceContext)
 
     const accept = () => {
-        tracker.accept(place.id)
+        serverless.accept(place.id)
 
         const {lat, lng} = place.location
 
@@ -33,19 +32,13 @@ const usePlace = () => {
     }
 
     const reject = async() => {
-        tracker.reject(place.id)
+        serverless.reject(place.id)
 
-        let data
+        const places = await serverless.search()
+        const {id} = getRandomElement(places)
 
-        data = await venueSearch()
-        const {venues} = data.response
-
-        const {id} = getRandomElement(venues)
-
-        data = await venueDetails(id)
-        const {venue} = data.response
-
-        setPlace(venue)
+        const newPlace = await serverless.details(id)
+        setPlace(newPlace)
     }
 
     const value = {

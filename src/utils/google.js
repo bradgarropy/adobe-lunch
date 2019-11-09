@@ -12,7 +12,7 @@ const placeSearch = async({
     const api = `${BASE}/${GROUP}/nearbysearch/json`
 
     const params = {
-        key: process.env.GATSBY_PLACES_API_KEY,
+        key: process.env.GATSBY_GOOGLE_PLACES_API_KEY,
         location: `${latitude},${longitude}`,
         radius,
         type,
@@ -31,7 +31,7 @@ const placeDetails = async id => {
     const api = `${BASE}/${GROUP}/details/json`
 
     const params = {
-        key: process.env.GATSBY_PLACES_API_KEY,
+        key: process.env.GATSBY_GOOGLE_PLACES_API_KEY,
         place_id: id,
     }
 
@@ -52,7 +52,7 @@ const placePhotos = async({
     const api = `${BASE}/${GROUP}/photo`
 
     const params = {
-        key: process.env.GATSBY_PLACES_API_KEY,
+        key: process.env.GATSBY_GOOGLE_PLACES_API_KEY,
         photo_reference: reference,
         maxwidth: width,
         maxheight: height,
