@@ -1,9 +1,10 @@
-import {queryParams, LATITUDE, LONGITUDE} from "./utils"
+const fetch = require("node-fetch")
+const {queryParams, LATITUDE, LONGITUDE} = require("./utils")
 
 const BASE = "https://maps.googleapis.com/maps/api"
 const GROUP = "place"
 
-const placeSearch = async({
+const search = async({
     latitude = LATITUDE,
     longitude = LONGITUDE,
     radius = 1600,
@@ -12,7 +13,7 @@ const placeSearch = async({
     const api = `${BASE}/${GROUP}/nearbysearch/json`
 
     const params = {
-        key: process.env.GATSBY_GOOGLE_PLACES_API_KEY,
+        key: process.env.GOOGLE_PLACES_API_KEY,
         location: `${latitude},${longitude}`,
         radius,
         type,
@@ -27,11 +28,11 @@ const placeSearch = async({
     return data
 }
 
-const placeDetails = async id => {
+const details = async id => {
     const api = `${BASE}/${GROUP}/details/json`
 
     const params = {
-        key: process.env.GATSBY_GOOGLE_PLACES_API_KEY,
+        key: process.env.GOOGLE_PLACES_API_KEY,
         place_id: id,
     }
 
@@ -44,15 +45,11 @@ const placeDetails = async id => {
     return data
 }
 
-const placePhotos = async({
-    reference = "",
-    width = 300,
-    height = 300,
-} = {}) => {
+const photo = async({reference = "", width = 300, height = 300} = {}) => {
     const api = `${BASE}/${GROUP}/photo`
 
     const params = {
-        key: process.env.GATSBY_GOOGLE_PLACES_API_KEY,
+        key: process.env.GOOGLE_PLACES_API_KEY,
         photo_reference: reference,
         maxwidth: width,
         maxheight: height,
@@ -62,9 +59,14 @@ const placePhotos = async({
     const url = `${api}?${query}`
 
     const response = await fetch(url)
-    const data = await response.json()
+    console.log(response)
+    const data = await response.text()
 
     return data
 }
 
-export {placeSearch, placeDetails, placePhotos}
+module.exports = {
+    search,
+    details,
+    photo,
+}
