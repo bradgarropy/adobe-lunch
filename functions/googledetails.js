@@ -7,7 +7,7 @@ const handler = async event => {
 
     const response = {
         statusCode: 200,
-        body: JSON.stringify(data.result),
+        body: JSON.stringify(data),
     }
 
     return response
