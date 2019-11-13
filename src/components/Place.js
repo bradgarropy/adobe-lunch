@@ -8,23 +8,29 @@ import PriceMeter from "./PriceMeter"
 import A from "../styles/A"
 import usePlace from "../hooks/usePlace"
 
-const StyledVenue = styled.div`
+const StyledPlace = styled.div`
     display: grid;
     justify-items: start;
     justify-content: center;
 `
 
-const VenueTitle = styled.h2`
+const PlacePhoto = styled.img`
+    justify-self: center;
+`
+
+const PlaceTitle = styled.h2`
     font-size: 18px;
     font-weight: bold;
     margin: 10px 0 0 0;
 `
 
-const VenueCategories = styled.span`
-    font-size: 14px;
-    color: ${({theme}) => theme.colors.black75};
-    margin: 0 0 10px 0;
-`
+const PlaceCategories = styled.span(
+    ({theme}) => `
+        font-size: 14px;
+        color: ${theme.colors.black75};
+        margin: 0 0 10px 0;
+    `,
+)
 
 const Ratings = styled.div`
     display: grid;
@@ -63,17 +69,17 @@ const Venue = () => {
     const handlers = useSwipeable(options)
 
     return (
-        <StyledVenue {...handlers}>
-            <img
+        <StyledPlace {...handlers}>
+            <PlacePhoto
                 src={`${bestPhoto.prefix}300x300${bestPhoto.suffix}`}
                 alt={name}
             />
 
-            <VenueTitle>{name}</VenueTitle>
+            <PlaceTitle>{name}</PlaceTitle>
 
-            <VenueCategories>
+            <PlaceCategories>
                 {categories.map(category => category.shortName).join(", ")}
-            </VenueCategories>
+            </PlaceCategories>
 
             <Ratings>
                 <PriceMeter price={price}/>
@@ -90,7 +96,7 @@ const Venue = () => {
                 <Smile/>
                 <Frown/>
             </Actions>
-        </StyledVenue>
+        </StyledPlace>
     )
 }
 
