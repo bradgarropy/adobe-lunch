@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import styled, {ThemeProvider} from "styled-components"
 import Header from "./Header"
 import Footer from "./Footer/Footer"
-import {PlaceProvider} from "../contexts"
+import {NearbyPlacesProvider, PlaceProvider} from "../contexts"
 import theme from "../styles/theme"
 import Container from "../styles/Container"
 import GlobalStyles from "../styles/GlobalStyles"
@@ -18,23 +18,27 @@ const StyledLayout = styled.div`
     box-sizing: border-box;
 `
 
-const Layout = ({children}) => (
-    <ThemeProvider theme={theme}>
-        <>
-            <GlobalStyles/>
+const Layout = ({children}) => {
+    return (
+        <ThemeProvider theme={theme}>
+            <>
+                <GlobalStyles/>
 
-            <StyledLayout>
-                <Header/>
+                <StyledLayout>
+                    <Header/>
 
-                <PlaceProvider>
-                    <Container>{children}</Container>
-                </PlaceProvider>
+                    <NearbyPlacesProvider>
+                        <PlaceProvider>
+                            <Container>{children}</Container>
+                        </PlaceProvider>
+                    </NearbyPlacesProvider>
 
-                <Footer/>
-            </StyledLayout>
-        </>
-    </ThemeProvider>
-)
+                    <Footer/>
+                </StyledLayout>
+            </>
+        </ThemeProvider>
+    )
+}
 
 Layout.propTypes = {
     children: PropTypes.node,

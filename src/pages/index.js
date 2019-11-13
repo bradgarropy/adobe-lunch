@@ -5,7 +5,7 @@ import Meta from "../components/SEO/Meta"
 import Facebook from "../components/SEO/Facebook"
 import Twitter from "../components/SEO/Twitter"
 import Place from "../components/Place"
-import {PlaceContext} from "../contexts"
+import {NearbyPlacesContext, PlaceContext} from "../contexts"
 import serverless from "../utils/serverless"
 import {getRandomElement} from "../utils/utils"
 import Button from "../styles/Button"
@@ -26,11 +26,11 @@ const Empty = () => (
 )
 
 const Index = () => {
+    const {nearbyPlaces} = useContext(NearbyPlacesContext)
     const {place, setPlace} = useContext(PlaceContext)
 
     const onClick = async() => {
-        const places = await serverless.search()
-        const {id} = getRandomElement(places)
+        const {id} = getRandomElement(nearbyPlaces)
 
         const newPlace = await serverless.details(id)
         setPlace(newPlace)
