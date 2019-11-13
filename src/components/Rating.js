@@ -3,20 +3,22 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import {format} from "../utils/number"
 
-const StyledRating = styled.span`
-    font-size: 16px;
-    font-weight: bold;
-    padding: 2px 8px;
-    color: ${({theme}) => theme.colors.white};
-    background-color: ${({color}) => `#${color}`};
-`
+const StyledRating = styled.span(
+    ({theme, color}) => `
+        font-size: 16px;
+        font-weight: bold;
+        padding: 2px 8px;
+        color: ${theme.colors.white};
+        background-color: ${color ? `#${color}` : theme.colors.black90};
+    `,
+)
 
 const Rating = ({rating, color}) => {
-    if (!rating) {
-        return <div/>
-    }
-
-    return <StyledRating color={color}>{format(rating)}</StyledRating>
+    return (
+        <StyledRating color={color}>
+            {rating ? format(rating) : "N/A"}
+        </StyledRating>
+    )
 }
 
 Rating.propTypes = {
