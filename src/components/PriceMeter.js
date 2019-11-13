@@ -10,11 +10,7 @@ const Dollar = styled.span`
 `
 
 const PriceMeter = ({price}) => {
-    if (!price) {
-        return <div/>
-    }
-
-    const {tier} = price
+    const tier = !price ? 0 : price.tier
 
     return (
         <span>
