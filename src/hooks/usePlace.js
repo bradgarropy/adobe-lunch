@@ -1,5 +1,5 @@
 import {useContext} from "react"
-import {PlaceContext} from "../contexts"
+import {NearbyPlacesContext, PlaceContext} from "../contexts"
 import {
     getRandomElement,
     queryParams,
@@ -9,6 +9,7 @@ import {
 import serverless from "../utils/serverless"
 
 const usePlace = () => {
+    const {nearbyPlaces} = useContext(NearbyPlacesContext)
     const {place, setPlace} = useContext(PlaceContext)
 
     const accept = () => {
@@ -34,10 +35,9 @@ const usePlace = () => {
     const reject = async() => {
         serverless.reject(place.id)
 
-        const places = await serverless.search()
-        const {id} = getRandomElement(places)
-
+        const {id} = getRandomElement(nearbyPlaces)
         const newPlace = await serverless.details(id)
+
         setPlace(newPlace)
     }
 
