@@ -3,7 +3,7 @@ const {list, create, update} = require("./utils/airtable")
 const handler = async event => {
     const {id} = JSON.parse(event.body)
 
-    let records = await list(`{id}="${id}"`)
+    let records = await list({filter: `{id}="${id}"`})
 
     if (!records.length) {
         records = await create(id)

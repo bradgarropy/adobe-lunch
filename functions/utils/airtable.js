@@ -1,88 +1,82 @@
-const fetch = require("node-fetch")
-const {queryParams} = require("./utils")
+const Airtable = require("airtable")
 
 const BASE_ID = "app5z2r9qwmnLFp9B"
 const BASE_NAME = "places"
-const API = `https://api.airtable.com/v0/${BASE_ID}/${BASE_NAME}`
 
-const list = async filter => {
-    const params = {
-        filterByFormula: encodeURIComponent(filter),
-    }
+const airtable = Airtable.base(BASE_ID)
 
-    const query = queryParams(params)
-    const url = `${API}?${query}`
+const list = async({limit = 100, filter = "", sort = []}) => {
+    // const popular = await airtable(BASE_NAME)
+    //     .select({
+    //         maxRecords: 5,
+    //         sort: [
+    //             {
+    //                 field: "accepted",
+    //                 direction: "desc",
+    //             },
+    //             {
+    //                 field: "rejected",
+    //                 direction: "asc",
+    //             },
+    //         ],
+    //     })
+    //     .firstPage()
 
-    const headers = {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`,
-    }
+    // console.log("popular")
+    // popular.forEach(result => console.log(result.fields))
+
+    // const unpopular = await airtable(BASE_NAME)
+    //     .select({
+    //         maxRecords: 5,
+    //         sort: [
+    //             {
+    //                 field: "rejected",
+    //                 direction: "desc",
+    //             },
+    //             {
+    //                 field: "accepted",
+    //                 direction: "asc",
+    //             },
+    //         ],
+    //     })
+    //     .firstPage()
+
+    // console.log("unpopular")
+    // unpopular.forEach(result => console.log(result.fields))
 
     const options = {
-        method: "GET",
-        headers,
+        maxRecords: limit,
+        filterByFormula: filter,
+        sort,
     }
 
-    const response = await fetch(url, options)
-    const {records} = await response.json()
+    const records = await airtable(BASE_NAME)
+        .select(options)
+        .firstPage()
 
     return records
 }
 
 const create = async id => {
-    const headers = {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`,
+    const record = {
+        fields: {
+            id,
+            accepted: 0,
+            rejected: 0,
+        },
     }
 
-    const data = {
-        records: [
-            {
-                fields: {
-                    id,
-                    accepted: 0,
-                    rejected: 0,
-                },
-            },
-        ],
-    }
-
-    const options = {
-        method: "POST",
-        headers,
-        body: JSON.stringify(data),
-    }
-
-    const response = await fetch(API, options)
-    const {records} = await response.json()
-
+    const records = await airtable(BASE_NAME).create([record])
     return records
 }
 
 const update = async(id, fields) => {
-    const headers = {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`,
+    const update = {
+        id,
+        fields,
     }
 
-    const data = {
-        records: [
-            {
-                id,
-                fields,
-            },
-        ],
-    }
-
-    const options = {
-        method: "PATCH",
-        headers,
-        body: JSON.stringify(data),
-    }
-
-    const response = await fetch(API, options)
-    const {records} = await response.json()
-
+    const records = await airtable(BASE_NAME).update([update])
     return records
 }
 
