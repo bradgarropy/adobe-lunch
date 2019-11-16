@@ -5,7 +5,7 @@ import Frown from "./Frown"
 import Smile from "./Smile"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
-import A from "../styles/A"
+import Link from "../styles/Link"
 import usePlace from "../hooks/usePlace"
 
 const StyledPlace = styled.div`
@@ -87,9 +87,9 @@ const Venue = () => {
             </Ratings>
 
             {menu && (
-                <A href={menu.url} target="_blank" rel="noopener noreferrer">
+                <Link href={menu.url} target="_blank" rel="noopener noreferrer">
                     Menu
-                </A>
+                </Link>
             )}
 
             <Actions>

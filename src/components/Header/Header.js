@@ -1,22 +1,20 @@
 import React from "react"
 import styled from "styled-components"
-import Adobe from "../images/adobe.svg"
+import Logo from "./Logo"
+import Navigation from "./Navigation"
 
 const StyledHeader = styled.header`
     display: grid;
     grid-auto-flow: column;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
-    color: ${({theme}) => theme.colors.black};
-    font-size: 24px;
-    gap: 4px;
 `
 
 const Header = () => {
     return (
         <StyledHeader>
-            <Adobe/>
-            <span>LUNCH</span>
+            <Logo/>
+            <Navigation/>
         </StyledHeader>
     )
 }

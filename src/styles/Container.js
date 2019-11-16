@@ -5,7 +5,6 @@ const Container = styled.main`
     justify-items: center;
     justify-content: center;
     align-content: center;
-    gap: 50px;
 `
 
 export default Container

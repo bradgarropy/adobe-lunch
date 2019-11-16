@@ -1,9 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled, {ThemeProvider} from "styled-components"
-import Header from "./Header"
+import Header from "./Header/Header"
 import Footer from "./Footer/Footer"
-import {NearbyPlacesProvider, PlaceProvider} from "../contexts"
+import {
+    NearbyPlacesProvider,
+    PopularityProvider,
+    PlaceProvider,
+} from "../contexts"
 import theme from "../styles/theme"
 import Container from "../styles/Container"
 import GlobalStyles from "../styles/GlobalStyles"
@@ -28,9 +32,11 @@ const Layout = ({children}) => {
                     <Header/>
 
                     <NearbyPlacesProvider>
-                        <PlaceProvider>
-                            <Container>{children}</Container>
-                        </PlaceProvider>
+                        <PopularityProvider>
+                            <PlaceProvider>
+                                <Container>{children}</Container>
+                            </PlaceProvider>
+                        </PopularityProvider>
                     </NearbyPlacesProvider>
 
                     <Footer/>
