@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "gatsby"
 import styled from "styled-components"
 import Logo from "./Logo"
 import Navigation from "./Navigation"
@@ -10,10 +11,17 @@ const StyledHeader = styled.header`
     align-items: center;
 `
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`
+
 const Header = () => {
     return (
         <StyledHeader>
-            <Logo/>
+            <StyledLink to="/">
+                <Logo/>
+            </StyledLink>
+
             <Navigation/>
         </StyledHeader>
     )
