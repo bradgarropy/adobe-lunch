@@ -6,7 +6,7 @@ import {NearbyPlacesContext} from "../contexts"
 const PopularityList = ({places = []}) => {
     const {nearbyPlaces} = useContext(NearbyPlacesContext)
 
-    if (!places.length || !nearbyPlaces.length) {
+    if (!nearbyPlaces.length) {
         return null
     }
 
