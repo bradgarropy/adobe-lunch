@@ -6,44 +6,6 @@ const BASE_NAME = "places"
 const airtable = Airtable.base(BASE_ID)
 
 const list = async({limit = 100, filter = "", sort = []}) => {
-    // const popular = await airtable(BASE_NAME)
-    //     .select({
-    //         maxRecords: 5,
-    //         sort: [
-    //             {
-    //                 field: "accepted",
-    //                 direction: "desc",
-    //             },
-    //             {
-    //                 field: "rejected",
-    //                 direction: "asc",
-    //             },
-    //         ],
-    //     })
-    //     .firstPage()
-
-    // console.log("popular")
-    // popular.forEach(result => console.log(result.fields))
-
-    // const unpopular = await airtable(BASE_NAME)
-    //     .select({
-    //         maxRecords: 5,
-    //         sort: [
-    //             {
-    //                 field: "rejected",
-    //                 direction: "desc",
-    //             },
-    //             {
-    //                 field: "accepted",
-    //                 direction: "asc",
-    //             },
-    //         ],
-    //     })
-    //     .firstPage()
-
-    // console.log("unpopular")
-    // unpopular.forEach(result => console.log(result.fields))
-
     const options = {
         maxRecords: limit,
         filterByFormula: filter,

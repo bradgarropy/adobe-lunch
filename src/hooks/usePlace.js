@@ -11,6 +11,7 @@ import serverless from "../utils/serverless"
 const usePlace = () => {
     const {nearbyPlaces} = useContext(NearbyPlacesContext)
     const {place, setPlace} = useContext(PlaceContext)
+    console.log(place)
 
     const accept = () => {
         serverless.accept(place.id)
