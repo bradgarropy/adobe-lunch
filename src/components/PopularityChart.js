@@ -3,7 +3,7 @@ import {useContext} from "react"
 import PropTypes from "prop-types"
 import {NearbyPlacesContext} from "../contexts"
 
-const PopularityList = ({places = []}) => {
+const PopularityChart = ({places = []}) => {
     const {nearbyPlaces} = useContext(NearbyPlacesContext)
 
     if (!nearbyPlaces.length) {
@@ -23,8 +23,8 @@ const PopularityList = ({places = []}) => {
     )
 }
 
-PopularityList.propTypes = {
+PopularityChart.propTypes = {
     places: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default PopularityList
+export default PopularityChart

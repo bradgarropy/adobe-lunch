@@ -48,16 +48,18 @@ const reject = async id => {
 
 const mostpopular = async() => {
     const response = await fetch("/.netlify/functions/mostpopular")
-    const json = await response.json()
+    const records = await response.json()
 
-    return json
+    const mostPopularPlaces = records.map(record => record.fields)
+    return mostPopularPlaces
 }
 
 const leastpopular = async() => {
     const response = await fetch("/.netlify/functions/leastpopular")
-    const json = await response.json()
+    const records = await response.json()
 
-    return json
+    const leastPopularPlaces = records.map(record => record.fields)
+    return leastPopularPlaces
 }
 
 export default {

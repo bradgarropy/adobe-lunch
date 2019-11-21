@@ -7,4 +7,11 @@ const format = number => {
     return formatted
 }
 
-export {format}
+const percent = (numerator, denominator) => {
+    const decimal = numerator / denominator
+    const percent = decimal * 100
+
+    return percent
+}
+
+export {format, percent}
