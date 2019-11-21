@@ -70,5 +70,13 @@ module.exports = {
                 component: require.resolve("./src/components/Layout.js"),
             },
         },
+        {
+            resolve: "gatsby-source-apiserver",
+            options: {
+                url:
+                    "https://adobe-lunch.netlify.com/.netlify/functions/search",
+                name: "places",
+            },
+        },
     ],
 }
