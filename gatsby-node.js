@@ -1,10 +1,11 @@
 const path = require("path")
+const {details} = require("./src/utils/serverless")
 
-const createPlace = (id, createPage) => {
+const createPlace = (place, createPage) => {
     const options = {
-        path: `/place/${id}`,
+        path: `/place/${place.id}`,
         component: path.resolve("src/templates/place.js"),
-        context: {id},
+        context: {place},
     }
 
     createPage(options)
@@ -26,8 +27,10 @@ const createPages = ({graphql, actions}) => {
 
         const nearbyPlaces = data.allPlaces.nodes
 
-        nearbyPlaces.forEach(nearbyPlace => {
-            createPlace(nearbyPlace.id, createPage)
+        nearbyPlaces.forEach(async nearbyPlace => {
+            const place = await details(nearbyPlace.id)
+            console.log(place)
+            createPlace(place, createPage)
         })
 
         resolve()
