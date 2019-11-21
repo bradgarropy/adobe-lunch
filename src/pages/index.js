@@ -1,12 +1,11 @@
 import React from "react"
+import {navigate} from "gatsby"
 import {useContext} from "react"
 import styled from "styled-components"
 import Meta from "../components/SEO/Meta"
-import Facebook from "../components/SEO/Facebook"
 import Twitter from "../components/SEO/Twitter"
-import Place from "../components/Place"
-import {NearbyPlacesContext, PlaceContext} from "../contexts"
-import serverless from "../utils/serverless"
+import Facebook from "../components/SEO/Facebook"
+import {NearbyPlacesContext} from "../contexts"
 import {getRandomElement} from "../utils/utils"
 import Button from "../styles/Button"
 import Foursquare from "../images/foursquare.svg"
@@ -25,15 +24,12 @@ const Empty = () => (
     </StyledEmpty>
 )
 
-const Index = () => {
+const IndexPage = () => {
     const {nearbyPlaces} = useContext(NearbyPlacesContext)
-    const {place, setPlace} = useContext(PlaceContext)
 
     const onClick = async() => {
         const {id} = getRandomElement(nearbyPlaces)
-
-        const newPlace = await serverless.details(id)
-        setPlace(newPlace)
+        navigate(`/place/${id}`)
     }
 
     return (
@@ -42,16 +38,10 @@ const Index = () => {
             <Facebook/>
             <Twitter/>
 
-            {place ? (
-                <Place/>
-            ) : (
-                <>
-                    <Empty/>
-                    <Button onClick={onClick}>TELL ME</Button>
-                </>
-            )}
+            <Empty/>
+            <Button onClick={onClick}>TELL ME</Button>
         </>
     )
 }
 
-export default Index
+export default IndexPage

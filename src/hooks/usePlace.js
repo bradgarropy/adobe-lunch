@@ -1,3 +1,4 @@
+import {navigate} from "gatsby"
 import {useContext} from "react"
 import {NearbyPlacesContext, PlaceContext} from "../contexts"
 import {
@@ -10,7 +11,7 @@ import serverless from "../utils/serverless"
 
 const usePlace = () => {
     const {nearbyPlaces} = useContext(NearbyPlacesContext)
-    const {place, setPlace} = useContext(PlaceContext)
+    const {place} = useContext(PlaceContext)
 
     const accept = () => {
         serverless.accept(place.id)
@@ -36,9 +37,7 @@ const usePlace = () => {
         serverless.reject(place.id)
 
         const {id} = getRandomElement(nearbyPlaces)
-        const newPlace = await serverless.details(id)
-
-        setPlace(newPlace)
+        navigate(`/place/${id}`)
     }
 
     const value = {
