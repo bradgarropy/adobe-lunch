@@ -4,16 +4,7 @@ import {useStaticQuery, graphql} from "gatsby"
 import Helmet from "react-helmet"
 
 const Meta = ({title}) => {
-    const data = useStaticQuery(graphql`
-        {
-            site {
-                siteMetadata {
-                    description
-                    keywords
-                }
-            }
-        }
-    `)
+    const data = useStaticQuery(query)
 
     const {description, keywords} = data.site.siteMetadata
 
@@ -63,3 +54,14 @@ Meta.propTypes = {
 }
 
 export default Meta
+
+const query = graphql`
+    {
+        site {
+            siteMetadata {
+                description
+                keywords
+            }
+        }
+    }
+`
