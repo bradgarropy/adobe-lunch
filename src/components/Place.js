@@ -74,7 +74,8 @@ const Venue = () => {
 
     return (
         <StyledPlace {...handlers}>
-            <PlacePhoto
+            <h1>{place.id}</h1>
+            {/* <PlacePhoto
                 src={`${bestPhoto.prefix}300x300${bestPhoto.suffix}`}
                 alt={name}
             />
@@ -99,7 +100,7 @@ const Venue = () => {
             <Actions>
                 <Smile/>
                 <Frown/>
-            </Actions>
+            </Actions> */}
         </StyledPlace>
     )
 }
