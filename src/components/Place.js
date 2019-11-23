@@ -1,12 +1,12 @@
 import React from "react"
-import PropTypes from "prop-types"
+import {useContext} from "react"
 import styled from "styled-components"
 import {useSwipeable} from "react-swipeable"
 import Frown from "./Frown"
 import Smile from "./Smile"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
-import usePlace from "../hooks/usePlace"
+import {PlaceContext} from "../contexts"
 import A from "../styles/A"
 
 const StyledPlace = styled.div`
@@ -51,8 +51,8 @@ const Actions = styled.div`
     margin: 50px 0 0 0;
 `
 
-const Place = ({place}) => {
-    const {accept, reject} = usePlace(place)
+const Place = () => {
+    const {place, accept, reject} = useContext(PlaceContext)
 
     const options = {
         onSwipedLeft: reject,
@@ -60,6 +60,10 @@ const Place = ({place}) => {
     }
 
     const handlers = useSwipeable(options)
+
+    if (!place) {
+        return null
+    }
 
     const {
         bestPhoto,
@@ -101,10 +105,6 @@ const Place = ({place}) => {
             </Actions>
         </StyledPlace>
     )
-}
-
-Place.propTypes = {
-    place: PropTypes.object.isRequired,
 }
 
 export default Place

@@ -26,7 +26,6 @@ const Empty = () => (
 
 const IndexPage = () => {
     const {nearbyPlaces} = useContext(NearbyPlacesContext)
-    console.log(nearbyPlaces)
 
     const onClick = async() => {
         const {id} = getRandomElement(nearbyPlaces)

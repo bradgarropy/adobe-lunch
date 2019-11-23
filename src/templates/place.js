@@ -1,13 +1,16 @@
 import React from "react"
 import {graphql} from "gatsby"
+import {useContext} from "react"
 import PropTypes from "prop-types"
 import Place from "../components/Place"
 import Meta from "../components/SEO/Meta"
 import Twitter from "../components/SEO/Twitter"
 import Facebook from "../components/SEO/Facebook"
+import {PlaceContext} from "../contexts"
 
 const PlaceTemplate = ({data}) => {
-    const {place} = data
+    const {setPlace} = useContext(PlaceContext)
+    setPlace(data.place)
 
     return (
         <>
@@ -15,7 +18,7 @@ const PlaceTemplate = ({data}) => {
             <Facebook/>
             <Twitter/>
 
-            <Place place={place}/>
+            <Place/>
         </>
     )
 }
@@ -43,6 +46,10 @@ export const query = graphql`
             }
             rating
             ratingColor
+            location {
+                lat
+                lng
+            }
             menu {
                 url
             }

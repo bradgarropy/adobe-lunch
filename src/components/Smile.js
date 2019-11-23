@@ -1,10 +1,11 @@
 import React from "react"
+import {useContext} from "react"
+import {PlaceContext} from "../contexts"
 import Button from "../styles/Button"
 import Icon from "../images/smile.svg"
-import usePlace from "../hooks/usePlace"
 
 const Smile = () => {
-    const {accept} = usePlace()
+    const {accept} = useContext(PlaceContext)
 
     return (
         <Button onClick={accept}>
