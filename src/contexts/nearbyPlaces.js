@@ -5,7 +5,7 @@ import {createContext, useState} from "react"
 
 const nearbyPlacesQuery = graphql`
     query NearbyPlaces {
-        allPlaces(filter: {alternative_id: {ne: null}}) {
+        allPlace(filter: {alternative_id: {ne: null}}) {
             nodes {
                 id: alternative_id
                 name
@@ -24,8 +24,8 @@ const nearbyPlacesQuery = graphql`
 const NearbyPlacesContext = createContext()
 
 const NearbyPlacesProvider = ({children}) => {
-    const {allPlaces} = useStaticQuery(nearbyPlacesQuery)
-    const [nearbyPlaces] = useState(allPlaces.nodes)
+    const {allPlace} = useStaticQuery(nearbyPlacesQuery)
+    const [nearbyPlaces] = useState(allPlace.nodes)
 
     const context = {
         nearbyPlaces,

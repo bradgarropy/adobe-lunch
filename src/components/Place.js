@@ -16,6 +16,8 @@ const StyledPlace = styled.div`
 
 const PlacePhoto = styled.img`
     justify-self: center;
+    width: 300px;
+    height: 300px;
 `
 
 const PlaceTitle = styled.h2`
@@ -48,7 +50,7 @@ const Actions = styled.div`
     margin: 50px 0 0 0;
 `
 
-const Venue = () => {
+const Place = () => {
     const {place, accept, reject} = usePlace()
 
     const options = {
@@ -75,7 +77,7 @@ const Venue = () => {
     return (
         <StyledPlace {...handlers}>
             <h1>{place.id}</h1>
-            {/* <PlacePhoto
+            <PlacePhoto
                 src={`${bestPhoto.prefix}300x300${bestPhoto.suffix}`}
                 alt={name}
             />
@@ -100,9 +102,9 @@ const Venue = () => {
             <Actions>
                 <Smile/>
                 <Frown/>
-            </Actions> */}
+            </Actions>
         </StyledPlace>
     )
 }
 
-export default Venue
+export default Place

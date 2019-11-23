@@ -1,12 +1,10 @@
 const path = require("path")
 
-const createPlace = (place, createPage) => {
-    console.log(place)
-
+const createPlace = (id, createPage) => {
     const options = {
-        path: `/place/${place.id}`,
+        path: `/place/${id}`,
         component: path.resolve("src/templates/place.js"),
-        context: {place},
+        context: {id},
     }
 
     createPage(options)
@@ -18,7 +16,7 @@ const createPages = ({graphql, actions}) => {
     const promise = new Promise(async resolve => {
         const {data} = await graphql(`
             {
-                allPlaces(filter: {alternative_id: {ne: null}}) {
+                allPlace(filter: {alternative_id: {ne: null}}) {
                     nodes {
                         id: alternative_id
                     }
@@ -26,13 +24,8 @@ const createPages = ({graphql, actions}) => {
             }
         `)
 
-        const nearbyPlaces = data.allPlaces.nodes
-
-        nearbyPlaces.forEach(async nearbyPlace => {
-            // const data = await details(nearbyPlace.id)
-            // const place = data.response.venue
-            createPlace(nearbyPlace, createPage)
-        })
+        const places = data.allPlace.nodes
+        places.forEach(place => createPlace(place.id, createPage))
 
         resolve()
     })
