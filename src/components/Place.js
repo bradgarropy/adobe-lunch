@@ -49,14 +49,14 @@ const Actions = styled.div`
 `
 
 const Venue = () => {
+    const {place, accept, reject} = usePlace()
+
     const options = {
         onSwipedLeft: reject,
         onSwipedRight: accept,
     }
 
     const handlers = useSwipeable(options)
-
-    const {place, accept, reject} = usePlace()
 
     if (!place) {
         return null
