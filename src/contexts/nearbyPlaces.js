@@ -1,24 +1,23 @@
 import React from "react"
-import {createContext, useState, useEffect} from "react"
 import PropTypes from "prop-types"
-import serverless from "../utils/serverless"
+import {createContext, useState} from "react"
+import {navigate, useStaticQuery, graphql} from "gatsby"
+import {getRandomElement} from "../utils/utils"
 
 const NearbyPlacesContext = createContext()
 
 const NearbyPlacesProvider = ({children}) => {
-    const [nearbyPlaces, setNearbyPlaces] = useState([])
+    const {allPlace} = useStaticQuery(query)
+    const [nearbyPlaces] = useState(allPlace.nodes)
 
-    useEffect(() => {
-        const execute = async() => {
-            const newNearbyPlaces = await serverless.search()
-            setNearbyPlaces(newNearbyPlaces)
-        }
-
-        execute()
-    }, [])
+    const suggest = () => {
+        const {id} = getRandomElement(nearbyPlaces)
+        navigate(`/place/${id}`)
+    }
 
     const context = {
         nearbyPlaces,
+        suggest,
     }
 
     return (
@@ -33,3 +32,13 @@ NearbyPlacesProvider.propTypes = {
 }
 
 export {NearbyPlacesContext, NearbyPlacesProvider}
+
+const query = graphql`
+    {
+        allPlace(filter: {alternative_id: {ne: null}}) {
+            nodes {
+                id: alternative_id
+            }
+        }
+    }
+`

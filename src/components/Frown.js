@@ -1,10 +1,11 @@
 import React from "react"
+import {useContext} from "react"
+import {PlaceContext} from "../contexts"
 import Button from "../styles/Button"
 import Icon from "../images/frown.svg"
-import usePlace from "../hooks/usePlace"
 
 const Frown = () => {
-    const {reject} = usePlace()
+    const {reject} = useContext(PlaceContext)
 
     return (
         <Button secondary onClick={reject}>

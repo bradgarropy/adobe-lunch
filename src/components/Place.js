@@ -1,12 +1,13 @@
 import React from "react"
+import {useContext} from "react"
 import styled from "styled-components"
 import {useSwipeable} from "react-swipeable"
 import Frown from "./Frown"
 import Smile from "./Smile"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
-import Link from "../styles/Link"
-import usePlace from "../hooks/usePlace"
+import {PlaceContext} from "../contexts"
+import A from "../styles/A"
 
 const StyledPlace = styled.div`
     display: grid;
@@ -16,6 +17,8 @@ const StyledPlace = styled.div`
 
 const PlacePhoto = styled.img`
     justify-self: center;
+    width: 300px;
+    height: 300px;
 `
 
 const PlaceTitle = styled.h2`
@@ -48,8 +51,19 @@ const Actions = styled.div`
     margin: 50px 0 0 0;
 `
 
-const Venue = () => {
-    const {place, accept, reject} = usePlace()
+const Place = () => {
+    const {place, accept, reject} = useContext(PlaceContext)
+
+    const options = {
+        onSwipedLeft: reject,
+        onSwipedRight: accept,
+    }
+
+    const handlers = useSwipeable(options)
+
+    if (!place) {
+        return null
+    }
 
     const {
         bestPhoto,
@@ -60,13 +74,6 @@ const Venue = () => {
         ratingColor,
         menu,
     } = place
-
-    const options = {
-        onSwipedLeft: reject,
-        onSwipedRight: accept,
-    }
-
-    const handlers = useSwipeable(options)
 
     return (
         <StyledPlace {...handlers}>
@@ -87,9 +94,9 @@ const Venue = () => {
             </Ratings>
 
             {menu && (
-                <Link href={menu.url} target="_blank" rel="noopener noreferrer">
+                <A href={menu.url} target="_blank" rel="noopener noreferrer">
                     Menu
-                </Link>
+                </A>
             )}
 
             <Actions>
@@ -100,4 +107,4 @@ const Venue = () => {
     )
 }
 
-export default Venue
+export default Place

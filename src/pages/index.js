@@ -1,25 +1,16 @@
 import React from "react"
 import {useContext} from "react"
-import Meta from "../components/SEO/Meta"
-import Facebook from "../components/SEO/Facebook"
-import Twitter from "../components/SEO/Twitter"
 import Empty from "../components/Empty"
-import Place from "../components/Place"
-import {NearbyPlacesContext, PlaceContext} from "../contexts"
-import serverless from "../utils/serverless"
-import {getRandomElement} from "../utils/utils"
+import Meta from "../components/SEO/Meta"
+import Twitter from "../components/SEO/Twitter"
+import Facebook from "../components/SEO/Facebook"
+import {NearbyPlacesContext} from "../contexts"
 import Button from "../styles/Button"
 
-const Index = () => {
-    const {nearbyPlaces} = useContext(NearbyPlacesContext)
-    const {place, setPlace} = useContext(PlaceContext)
+const IndexPage = () => {
+    const {suggest} = useContext(NearbyPlacesContext)
 
-    const onClick = async() => {
-        const {id} = getRandomElement(nearbyPlaces)
-
-        const newPlace = await serverless.details(id)
-        setPlace(newPlace)
-    }
+    const onClick = () => suggest()
 
     return (
         <>
@@ -27,16 +18,10 @@ const Index = () => {
             <Facebook/>
             <Twitter/>
 
-            {place ? (
-                <Place/>
-            ) : (
-                <>
-                    <Empty/>
-                    <Button onClick={onClick}>TELL ME</Button>
-                </>
-            )}
+            <Empty/>
+            <Button onClick={onClick}>TELL ME</Button>
         </>
     )
 }
 
-export default Index
+export default IndexPage

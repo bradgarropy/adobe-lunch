@@ -70,5 +70,25 @@ module.exports = {
                 component: require.resolve("./src/components/Layout.js"),
             },
         },
+        {
+            resolve: "gatsby-source-apiserver",
+            options: {
+                url:
+                    "https://static--adobe-lunch.netlify.com/.netlify/functions/nearby",
+                name: "place",
+            },
+        },
+        {
+            resolve: "gatsby-source-airtable",
+            options: {
+                apiKey: process.env.AIRTABLE_API_KEY,
+                tables: [
+                    {
+                        baseId: "app5z2r9qwmnLFp9B",
+                        tableName: "places",
+                    },
+                ],
+            },
+        },
     ],
 }
