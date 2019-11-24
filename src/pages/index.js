@@ -1,12 +1,10 @@
 import React from "react"
-import {navigate} from "gatsby"
 import {useContext} from "react"
 import styled from "styled-components"
 import Meta from "../components/SEO/Meta"
 import Twitter from "../components/SEO/Twitter"
 import Facebook from "../components/SEO/Facebook"
 import {NearbyPlacesContext} from "../contexts"
-import {getRandomElement} from "../utils/utils"
 import Button from "../styles/Button"
 import Foursquare from "../images/foursquare.svg"
 
@@ -25,12 +23,9 @@ const Empty = () => (
 )
 
 const IndexPage = () => {
-    const {nearbyPlaces} = useContext(NearbyPlacesContext)
+    const {suggest} = useContext(NearbyPlacesContext)
 
-    const onClick = async() => {
-        const {id} = getRandomElement(nearbyPlaces)
-        navigate(`/place/${id}`)
-    }
+    const onClick = () => suggest()
 
     return (
         <>
