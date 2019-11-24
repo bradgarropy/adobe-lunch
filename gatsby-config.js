@@ -74,7 +74,7 @@ module.exports = {
             resolve: "gatsby-source-apiserver",
             options: {
                 url:
-                    "https://static--adobe-lunch.netlify.com/.netlify/functions/nearby",
+                    "https://adobe-lunch.netlify.com/.netlify/functions/nearby",
                 name: "place",
             },
         },
