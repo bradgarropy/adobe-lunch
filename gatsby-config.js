@@ -78,5 +78,17 @@ module.exports = {
                 name: "place",
             },
         },
+        {
+            resolve: "gatsby-source-airtable",
+            options: {
+                apiKey: process.env.AIRTABLE_API_KEY,
+                tables: [
+                    {
+                        baseId: "app5z2r9qwmnLFp9B",
+                        tableName: "places",
+                    },
+                ],
+            },
+        },
     ],
 }
