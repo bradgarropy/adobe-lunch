@@ -13,7 +13,7 @@ import Container from "../styles/Container"
 import GlobalStyles from "../styles/GlobalStyles"
 
 const StyledLayout = styled.div`
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 20px;
