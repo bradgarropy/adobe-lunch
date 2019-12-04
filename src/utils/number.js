@@ -1,5 +1,8 @@
 const format = number => {
-    const options = {minimumFractionDigits: 1}
+    const options = {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 2,
+    }
 
     const formatter = new Intl.NumberFormat("default", options)
     const formatted = formatter.format(number)

@@ -38,6 +38,7 @@ const query = graphql`
         allPlace(filter: {alternative_id: {ne: null}}) {
             nodes {
                 id: alternative_id
+                name
             }
         }
     }

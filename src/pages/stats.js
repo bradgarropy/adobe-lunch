@@ -1,33 +1,14 @@
 import React from "react"
+import {graphql} from "gatsby"
 import {useContext} from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 import Meta from "../components/SEO/Meta"
-import BarChart from "../components/BarChart"
 import Twitter from "../components/SEO/Twitter"
 import Facebook from "../components/SEO/Facebook"
-import {NearbyPlacesContext, PopularityContext} from "../contexts"
-
-const adjust = entries => {
-    if (!entries.length) {
-        return []
-    }
-
-    const values = entries.map(entry => entry.value)
-    const minimum = Math.min(...values)
-
-    if (minimum >= 0) {
-        return entries
-    }
-
-    const adjusted = entries.map(entry => {
-        const value = entry.value + Math.abs(minimum)
-
-        const adjusted = {...entry, value}
-        return adjusted
-    })
-
-    return adjusted
-}
+import PopularityList from "../components/PopularityList"
+import PopularityChart from "../components/PopularityChart"
+import {NearbyPlacesContext} from "../contexts"
 
 const Charts = styled.div`
     display: grid;
@@ -39,41 +20,10 @@ const Chart = styled.div`
     justify-items: center;
 `
 
-const Stats = () => {
-    const {nearbyPlaces} = useContext(NearbyPlacesContext)
-    const {mostPopular, leastPopular} = useContext(PopularityContext)
-
-    if (!mostPopular.length || !leastPopular.length) {
-        return null
-    }
-
-    const popular = mostPopular.map(({id, accepted, rejected}) => {
-        const {name} = nearbyPlaces.find(nearbyPlace => nearbyPlace.id === id)
-        const value = accepted - rejected
-
-        const entry = {
-            label: name,
-            value,
-        }
-
-        return entry
-    })
-
-    const adjustedPopular = adjust(popular)
-
-    const unpopular = leastPopular.map(({id, accepted, rejected}) => {
-        const {name} = nearbyPlaces.find(nearbyPlace => nearbyPlace.id === id)
-        const value = rejected - accepted
-
-        const entry = {
-            label: name,
-            value,
-        }
-
-        return entry
-    })
-
-    const adjustedUnpopular = adjust(unpopular)
+const Stats = ({data}) => {
+    const entries = data.allAirtable.edges.map(edge => edge.node.data)
+    console.log(data)
+    console.log(entries)
 
     return (
         <>
@@ -83,17 +33,38 @@ const Stats = () => {
 
             <Charts>
                 <Chart>
-                    <h1>Most Popular</h1>
-                    <BarChart entries={adjustedPopular} sort/>
+                    <h1>Popularity List</h1>
+                    <PopularityList entries={entries}/>
                 </Chart>
 
                 <Chart>
-                    <h1>Least Popular</h1>
-                    <BarChart entries={adjustedUnpopular} sort/>
+                    <h1>Popularity Chart</h1>
+                    <PopularityChart entries={entries}/>
                 </Chart>
             </Charts>
         </>
     )
 }
 
+Stats.propTypes = {
+    data: PropTypes.object.isRequired,
+}
+
 export default Stats
+
+export const query = graphql`
+    {
+        allAirtable {
+            edges {
+                node {
+                    data {
+                        accepted
+                        id
+                        rejected
+                        popularity
+                    }
+                }
+            }
+        }
+    }
+`
