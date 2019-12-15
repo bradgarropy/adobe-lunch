@@ -1,22 +1,25 @@
 import React from "react"
+import {Link} from "gatsby"
 import styled from "styled-components"
-import Adobe from "../images/adobe.svg"
+import Logo from "./Logo"
 
 const StyledHeader = styled.header`
     display: grid;
     grid-auto-flow: column;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
-    color: ${({theme}) => theme.colors.black};
-    font-size: 24px;
-    gap: 4px;
+`
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
 `
 
 const Header = () => {
     return (
         <StyledHeader>
-            <Adobe/>
-            <span>LUNCH</span>
+            <StyledLink to="/">
+                <Logo/>
+            </StyledLink>
         </StyledHeader>
     )
 }
