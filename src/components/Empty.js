@@ -15,7 +15,7 @@ const StyledEmpty = styled.div(
 const Empty = () => (
     <StyledEmpty>
         <p>Where to eat?</p>
-        <Foursquare />
+        <Foursquare/>
     </StyledEmpty>
 )
 
