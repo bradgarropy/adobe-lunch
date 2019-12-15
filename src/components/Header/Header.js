@@ -2,7 +2,6 @@ import React from "react"
 import {Link} from "gatsby"
 import styled from "styled-components"
 import Logo from "./Logo"
-import Navigation from "./Navigation"
 
 const StyledHeader = styled.header`
     display: grid;
@@ -21,8 +20,6 @@ const Header = () => {
             <StyledLink to="/">
                 <Logo/>
             </StyledLink>
-
-            <Navigation/>
         </StyledHeader>
     )
 }

@@ -1,6 +1,6 @@
 import React from "react"
-import Adobe from "../../images/adobe.svg"
 import styled from "styled-components"
+import Adobe from "../../images/adobe.svg"
 
 const StyledLogo = styled.span(
     ({theme}) => `
