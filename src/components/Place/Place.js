@@ -70,8 +70,6 @@ const Place = () => {
         menu,
     } = place
 
-    console.log(place)
-
     return (
         <StyledPlace {...handlers}>
             <Photo photo={bestPhoto}/>
