@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import {format} from "../utils/number"
+import {format} from "../../utils/number"
 
 const StyledRating = styled.span(
     ({theme, color}) => `
