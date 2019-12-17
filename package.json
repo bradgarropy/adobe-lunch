@@ -34,7 +34,7 @@
     },
     "dependencies": {
         "@google/maps": "^1.0.2",
-        "airtable": "^0.8.0",
+        "airtable": "^0.8.1",
         "babel-plugin-styled-components": "^1.10.6",
         "dotenv": "^8.1.0",
         "gatsby": "^2.18.4",

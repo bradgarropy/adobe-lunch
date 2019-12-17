@@ -2,23 +2,18 @@ import React from "react"
 import {useContext} from "react"
 import styled from "styled-components"
 import {useSwipeable} from "react-swipeable"
-import Frown from "./Frown"
-import Smile from "./Smile"
+import Photo from "./Photo"
+import Frown from "../Frown"
+import Smile from "../Smile"
 import Rating from "./Rating"
 import PriceMeter from "./PriceMeter"
-import {PlaceContext} from "../contexts"
-import Link from "../styles/Link"
+import {PlaceContext} from "../../contexts"
+import Link from "../../styles/Link"
 
 const StyledPlace = styled.div`
     display: grid;
     justify-items: start;
     justify-content: center;
-`
-
-const PlacePhoto = styled.img`
-    justify-self: center;
-    width: 300px;
-    height: 300px;
 `
 
 const PlaceTitle = styled.h2`
@@ -77,10 +72,7 @@ const Place = () => {
 
     return (
         <StyledPlace {...handlers}>
-            <PlacePhoto
-                src={`${bestPhoto.prefix}300x300${bestPhoto.suffix}`}
-                alt={name}
-            />
+            <Photo photo={bestPhoto}/>
 
             <PlaceTitle>{name}</PlaceTitle>
 
