@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {useStaticQuery, graphql} from "gatsby"
-import Helmet from "react-helmet"
+import {Helmet} from "react-helmet"
 
 const Meta = ({title}) => {
     const data = useStaticQuery(query)
@@ -10,15 +10,15 @@ const Meta = ({title}) => {
 
     return (
         <Helmet>
-            <html lang="en"/>
+            <html lang="en" />
             <title>{title}</title>
 
-            <meta name="description" content={description}/>
-            <meta name="keywords" content={keywords}/>
-            <meta name="msapplication-TileColor" content="#ff0000"/>
-            <meta name="theme-color" content="#ffffff"/>
+            <meta name="description" content={description} />
+            <meta name="keywords" content={keywords} />
+            <meta name="msapplication-TileColor" content="#ff0000" />
+            <meta name="theme-color" content="#ffffff" />
 
-            <link rel="manifest" href="/site.webmanifest"/>
+            <link rel="manifest" href="/site.webmanifest" />
 
             <link
                 rel="apple-touch-icon"
