@@ -47,7 +47,6 @@
         "gatsby-plugin-react-svg": "^3.0.0",
         "gatsby-plugin-styled-components": "^3.3.2",
         "gatsby-source-airtable": "^2.1.1",
-        "gatsby-source-apiserver": "^2.1.6",
         "gatsby-source-filesystem": "^2.3.8",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",

@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import {createContext, useState, useContext} from "react"
-import {NearbyPlacesContext} from "./index"
+import {createContext, useState, useEffect} from "react"
 import serverless from "../utils/serverless"
 import {queryParams, LATITUDE, LONGITUDE} from "../utils/utils"
 
@@ -9,7 +8,17 @@ const PlaceContext = createContext()
 
 const PlaceProvider = ({children}) => {
     const [place, setPlace] = useState()
-    const {suggest} = useContext(NearbyPlacesContext)
+
+    useEffect(() => {
+        const getPlace = async () => {
+            console.log("getPlace")
+            const newPlace = await serverless.suggestion()
+            console.log("newPlace", newPlace)
+            setPlace(newPlace)
+        }
+
+        getPlace()
+    }, [])
 
     const accept = () => {
         serverless.accept(place.id)
@@ -31,9 +40,10 @@ const PlaceProvider = ({children}) => {
         window.open(url)
     }
 
-    const reject = async() => {
+    const reject = async () => {
         serverless.reject(place.id)
-        suggest()
+        const newPlace = await serverless.suggestion()
+        setPlace(newPlace)
     }
 
     const context = {

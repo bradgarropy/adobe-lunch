@@ -1,21 +1,19 @@
 import React from "react"
-import Empty from "../components/Empty"
 import Meta from "../components/SEO/Meta"
+import Place from "../components/Place/Place"
 import Twitter from "../components/SEO/Twitter"
 import Facebook from "../components/SEO/Facebook"
-import ButtonLink from "../styles/ButtonLink"
 
-const IndexPage = () => {
+const PlacePage = () => {
     return (
         <>
             <Meta title="Adobe Lunch" />
             <Facebook />
             <Twitter />
 
-            <Empty />
-            <ButtonLink to="/place">TELL ME</ButtonLink>
+            <Place />
         </>
     )
 }
 
-export default IndexPage
+export default PlacePage

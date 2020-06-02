@@ -9,8 +9,16 @@ const queryParams = params => {
     return query
 }
 
+const getRandomElement = array => {
+    const index = Math.floor(Math.random() * array.length)
+    const element = array[index]
+
+    return element
+}
+
 module.exports = {
     queryParams,
     LATITUDE,
     LONGITUDE,
+    getRandomElement,
 }

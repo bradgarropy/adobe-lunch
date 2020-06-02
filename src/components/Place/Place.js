@@ -1,13 +1,13 @@
 import React from "react"
-import {useContext} from "react"
 import styled from "styled-components"
 import {useSwipeable} from "react-swipeable"
 import Photo from "./Photo"
 import Frown from "../Frown"
+import Quota from "../Quota"
 import Smile from "../Smile"
 import Rating from "./Rating"
+import {usePlace} from "../../hooks"
 import PriceMeter from "./PriceMeter"
-import {PlaceContext} from "../../contexts"
 import Link from "../../styles/Link"
 
 const StyledPlace = styled.div`
@@ -22,13 +22,11 @@ const PlaceTitle = styled.h2`
     margin: 10px 0 0 0;
 `
 
-const PlaceCategories = styled.span(
-    ({theme}) => `
-        font-size: 14px;
-        color: ${theme.colors.black75};
-        margin: 0 0 10px 0;
-    `,
-)
+const PlaceCategories = styled.span`
+    font-size: 14px;
+    color: ${({theme}) => theme.colors.black75};
+    margin: 0 0 10px 0;
+`
 
 const Ratings = styled.div`
     display: grid;
@@ -47,7 +45,8 @@ const Actions = styled.div`
 `
 
 const Place = () => {
-    const {place, accept, reject} = useContext(PlaceContext)
+    const {place, accept, reject} = usePlace()
+    console.log("place", place)
 
     const options = {
         onSwipedLeft: reject,
@@ -58,6 +57,10 @@ const Place = () => {
 
     if (!place) {
         return null
+    }
+
+    if (place.meta.code === 429) {
+        return <Quota />
     }
 
     const {
@@ -72,7 +75,7 @@ const Place = () => {
 
     return (
         <StyledPlace {...handlers}>
-            <Photo photo={bestPhoto}/>
+            <Photo photo={bestPhoto} />
 
             <PlaceTitle>{name}</PlaceTitle>
 
@@ -81,8 +84,8 @@ const Place = () => {
             </PlaceCategories>
 
             <Ratings>
-                <PriceMeter price={price}/>
-                <Rating rating={rating} color={ratingColor}/>
+                <PriceMeter price={price} />
+                <Rating rating={rating} color={ratingColor} />
             </Ratings>
 
             {menu && (
@@ -92,8 +95,8 @@ const Place = () => {
             )}
 
             <Actions>
-                <Smile/>
-                <Frown/>
+                <Smile />
+                <Frown />
             </Actions>
         </StyledPlace>
     )

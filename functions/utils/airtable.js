@@ -5,16 +5,14 @@ const BASE_NAME = "places"
 
 const airtable = Airtable.base(BASE_ID)
 
-const list = async({limit = 100, filter = "", sort = []}) => {
+const list = async ({limit = 100, filter = "", sort = []}) => {
     const options = {
         maxRecords: limit,
         filterByFormula: filter,
         sort,
     }
 
-    const records = await airtable(BASE_NAME)
-        .select(options)
-        .firstPage()
+    const records = await airtable(BASE_NAME).select(options).firstPage()
 
     return records
 }
@@ -32,7 +30,7 @@ const create = async id => {
     return records
 }
 
-const update = async(id, fields) => {
+const update = async (id, fields) => {
     const update = {
         id,
         fields,

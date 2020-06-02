@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import styled, {ThemeProvider} from "styled-components"
 import Header from "./Header/Header"
 import Footer from "./Footer/Footer"
-import {NearbyPlacesProvider, PlaceProvider} from "../contexts"
+import {PlaceProvider} from "../contexts"
 import theme from "../styles/theme"
 import Container from "../styles/Container"
 import GlobalStyles from "../styles/GlobalStyles"
@@ -22,18 +22,16 @@ const Layout = ({children}) => {
     return (
         <ThemeProvider theme={theme}>
             <>
-                <GlobalStyles/>
+                <GlobalStyles />
 
                 <StyledLayout>
-                    <Header/>
+                    <Header />
 
-                    <NearbyPlacesProvider>
-                        <PlaceProvider>
-                            <Container>{children}</Container>
-                        </PlaceProvider>
-                    </NearbyPlacesProvider>
+                    <PlaceProvider>
+                        <Container>{children}</Container>
+                    </PlaceProvider>
 
-                    <Footer/>
+                    <Footer />
                 </StyledLayout>
             </>
         </ThemeProvider>

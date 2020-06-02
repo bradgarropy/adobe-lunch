@@ -5,7 +5,7 @@ const BASE = "https://api.foursquare.com/v2"
 const GROUP = "venues"
 const VERSION = "20191010"
 
-const search = async({
+const search = async ({
     latitude = LATITUDE,
     longitude = LONGITUDE,
     intent = "browse",

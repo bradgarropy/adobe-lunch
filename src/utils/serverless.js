@@ -1,4 +1,4 @@
-const search = async() => {
+const search = async () => {
     const response = await fetch("/.netlify/functions/search")
     const json = await response.json()
 
@@ -15,6 +15,13 @@ const details = async id => {
     }
 
     const response = await fetch("/.netlify/functions/details", options)
+    const json = await response.json()
+
+    return json
+}
+
+const suggestion = async () => {
+    const response = await fetch("/.netlify/functions/suggestion")
     const json = await response.json()
 
     return json
@@ -46,14 +53,14 @@ const reject = async id => {
     return
 }
 
-const mostpopular = async() => {
+const mostpopular = async () => {
     const response = await fetch("/.netlify/functions/mostpopular")
     const json = await response.json()
 
     return json
 }
 
-const leastpopular = async() => {
+const leastpopular = async () => {
     const response = await fetch("/.netlify/functions/leastpopular")
     const json = await response.json()
 
@@ -63,6 +70,7 @@ const leastpopular = async() => {
 export default {
     search,
     details,
+    suggestion,
     accept,
     reject,
     mostpopular,

@@ -71,14 +71,6 @@ module.exports = {
             },
         },
         {
-            resolve: "gatsby-source-apiserver",
-            options: {
-                url:
-                    "https://adobe-lunch.netlify.com/.netlify/functions/nearby",
-                name: "place",
-            },
-        },
-        {
             resolve: "gatsby-source-airtable",
             options: {
                 apiKey: process.env.AIRTABLE_API_KEY,
