@@ -47,17 +47,11 @@ const PlaceProvider = ({children}) => {
         setPlace(newPlace)
     }
 
-    const suggest = async () => {
-        const newPlace = await serverless.suggestion()
-        setPlace(newPlace)
-    }
-
     const context = {
         place,
         setPlace,
         accept,
         reject,
-        suggest,
     }
 
     return (
