@@ -1,15 +1,18 @@
 import React from "react"
-import Meta from "../components/SEO/Meta"
+import SEO from "@bradgarropy/gatsby-plugin-seo"
+import {usePlace} from "../hooks"
 import Place from "../components/Place/Place"
-import Twitter from "../components/SEO/Twitter"
-import Facebook from "../components/SEO/Facebook"
 
 const PlacePage = () => {
+    const {place} = usePlace()
+
+    if (!place) {
+        return null
+    }
+
     return (
         <>
-            <Meta title="Adobe Lunch" />
-            <Facebook />
-            <Twitter />
+            <SEO title="Adobe Lunch" />
 
             <Place />
         </>

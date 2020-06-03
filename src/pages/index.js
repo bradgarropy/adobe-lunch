@@ -1,19 +1,18 @@
 import React from "react"
+import {navigate} from "gatsby"
+import SEO from "@bradgarropy/gatsby-plugin-seo"
+import Button from "../styles/Button"
 import Empty from "../components/Empty"
-import Meta from "../components/SEO/Meta"
-import Twitter from "../components/SEO/Twitter"
-import Facebook from "../components/SEO/Facebook"
-import ButtonLink from "../styles/ButtonLink"
 
 const IndexPage = () => {
+    const onClick = () => navigate("/place")
+
     return (
         <>
-            <Meta title="Adobe Lunch" />
-            <Facebook />
-            <Twitter />
+            <SEO title="Adobe Lunch" />
 
             <Empty />
-            <ButtonLink to="/place">TELL ME</ButtonLink>
+            <Button onClick={onClick}>TELL ME</Button>
         </>
     )
 }

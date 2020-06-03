@@ -3,7 +3,6 @@ import {PlaceContext} from "../contexts"
 
 const usePlace = () => {
     const placeCtx = useContext(PlaceContext)
-    console.log("placeCtx", placeCtx)
     return placeCtx
 }
 

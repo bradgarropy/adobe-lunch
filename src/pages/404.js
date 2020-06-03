@@ -1,15 +1,11 @@
 import React from "react"
 import {Link} from "gatsby"
-import Meta from "../components/SEO/Meta"
-import Facebook from "../components/SEO/Facebook"
-import Twitter from "../components/SEO/Twitter"
+import SEO from "@bradgarropy/gatsby-plugin-seo"
 
 const NotFoundPage = () => {
     return (
         <>
-            <Meta title="You lost?"/>
-            <Facebook/>
-            <Twitter/>
+            <SEO title="You lost?" />
 
             <h1>🤔 You lost?</h1>
 

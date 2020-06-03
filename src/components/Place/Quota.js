@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Foursquare from "../images/foursquare.svg"
+import Foursquare from "../../images/foursquare.svg"
 
 const StyledQuota = styled.div`
     display: grid;

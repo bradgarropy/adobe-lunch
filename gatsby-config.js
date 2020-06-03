@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
     siteMetadata: {
-        siteUrl: "https://adobe-lunch.netlify.com",
+        url: "https://adobe-lunch.netlify.com",
         title: "Adobe Lunch",
         description: "🥪 lunch, not launch",
         keywords: [
@@ -18,6 +18,7 @@ module.exports = {
             "domain",
         ],
         email: "bradgarropy@gmail.com",
+        twitter: "bradgarropy",
     },
     plugins: [
         {
@@ -81,6 +82,9 @@ module.exports = {
                     },
                 ],
             },
+        },
+        {
+            resolve: "@bradgarropy/gatsby-plugin-seo",
         },
     ],
 }

@@ -10,20 +10,19 @@ const PlaceProvider = ({children}) => {
     const [place, setPlace] = useState()
 
     useEffect(() => {
-        const getPlace = async () => {
-            console.log("getPlace")
+        const fetch = async () => {
             const newPlace = await serverless.suggestion()
-            console.log("newPlace", newPlace)
             setPlace(newPlace)
         }
 
-        getPlace()
+        fetch()
     }, [])
 
     const accept = () => {
-        serverless.accept(place.id)
+        const {id, location} = place.response.venue
+        const {lat, lng} = location
 
-        const {lat, lng} = place.location
+        serverless.accept(id)
 
         const params = {
             api: 1,
@@ -41,7 +40,14 @@ const PlaceProvider = ({children}) => {
     }
 
     const reject = async () => {
-        serverless.reject(place.id)
+        const {id} = place.response.venue
+        serverless.reject(id)
+
+        const newPlace = await serverless.suggestion()
+        setPlace(newPlace)
+    }
+
+    const suggest = async () => {
         const newPlace = await serverless.suggestion()
         setPlace(newPlace)
     }
@@ -51,6 +57,7 @@ const PlaceProvider = ({children}) => {
         setPlace,
         accept,
         reject,
+        suggest,
     }
 
     return (

@@ -1,5 +1,5 @@
 const search = async () => {
-    const response = await fetch("/.netlify/functions/search")
+    const response = await fetch("/api/search")
     const json = await response.json()
 
     return json
@@ -14,14 +14,14 @@ const details = async id => {
         "body": JSON.stringify(data),
     }
 
-    const response = await fetch("/.netlify/functions/details", options)
+    const response = await fetch("/api/details", options)
     const json = await response.json()
 
     return json
 }
 
 const suggestion = async () => {
-    const response = await fetch("/.netlify/functions/suggestion")
+    const response = await fetch("/api/suggestion")
     const json = await response.json()
 
     return json
@@ -36,7 +36,7 @@ const accept = async id => {
         "body": JSON.stringify(data),
     }
 
-    fetch("/.netlify/functions/accept", options)
+    fetch("/api/accept", options)
     return
 }
 
@@ -49,19 +49,19 @@ const reject = async id => {
         "body": JSON.stringify(data),
     }
 
-    fetch("/.netlify/functions/reject", options)
+    fetch("/api/reject", options)
     return
 }
 
 const mostpopular = async () => {
-    const response = await fetch("/.netlify/functions/mostpopular")
+    const response = await fetch("/api/mostpopular")
     const json = await response.json()
 
     return json
 }
 
 const leastpopular = async () => {
-    const response = await fetch("/.netlify/functions/leastpopular")
+    const response = await fetch("/api/leastpopular")
     const json = await response.json()
 
     return json
