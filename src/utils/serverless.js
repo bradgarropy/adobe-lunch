@@ -1,5 +1,14 @@
+import {getLocation} from "./location"
+
 const suggestion = async () => {
-    const response = await fetch("/api/suggestion")
+    const location = await getLocation()
+
+    const options = {
+        method: "POST",
+        body: JSON.stringify(location),
+    }
+
+    const response = await fetch("/api/suggestion", options)
     const json = await response.json()
 
     return json
