@@ -9,7 +9,7 @@ const getLocation = () => {
             resolve(location)
         }
 
-        const options = {enableHighAccuracy: false}
+        const options = {enableHighAccuracy: true}
 
         navigator.geolocation.getCurrentPosition(success, null, options)
     })
