@@ -1,27 +1,14 @@
-const search = async () => {
-    const response = await fetch("/api/search")
-    const json = await response.json()
-
-    return json
-}
-
-const details = async id => {
-    const data = {id}
-
-    const options = {
-        "method": "POST",
-        "Content-Type": "application/json",
-        "body": JSON.stringify(data),
-    }
-
-    const response = await fetch("/api/details", options)
-    const json = await response.json()
-
-    return json
-}
+import {getLocation} from "./location"
 
 const suggestion = async () => {
-    const response = await fetch("/api/suggestion")
+    const location = await getLocation()
+
+    const options = {
+        method: "POST",
+        body: JSON.stringify(location),
+    }
+
+    const response = await fetch("/api/suggestion", options)
     const json = await response.json()
 
     return json
@@ -68,8 +55,6 @@ const leastpopular = async () => {
 }
 
 export default {
-    search,
-    details,
     suggestion,
     accept,
     reject,

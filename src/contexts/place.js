@@ -2,7 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import {createContext, useState, useEffect} from "react"
 import serverless from "../utils/serverless"
-import {queryParams, LATITUDE, LONGITUDE} from "../utils/utils"
+import {getLocation} from "../utils/location"
+import {queryParams} from "../utils/utils"
 
 const PlaceContext = createContext()
 
@@ -18,16 +19,15 @@ const PlaceProvider = ({children}) => {
         fetch()
     }, [])
 
-    const accept = () => {
+    const accept = async () => {
         const {id, location} = place.response.venue
-        const {lat, lng} = location
 
-        serverless.accept(id)
+        const origin = await getLocation()
 
         const params = {
             api: 1,
-            origin: `${LATITUDE},${LONGITUDE}`,
-            destination: `${lat},${lng}`,
+            origin: `${origin.latitude},${origin.longitude}`,
+            destination: `${location.lat},${location.lng}`,
             travelmode: "walking",
             dir_action: "navigate",
         }
@@ -36,6 +36,7 @@ const PlaceProvider = ({children}) => {
         const query = queryParams(params)
         const url = `${api}?${query}`
 
+        serverless.accept(id)
         window.open(url)
     }
 
@@ -47,17 +48,11 @@ const PlaceProvider = ({children}) => {
         setPlace(newPlace)
     }
 
-    const suggest = async () => {
-        const newPlace = await serverless.suggestion()
-        setPlace(newPlace)
-    }
-
     const context = {
         place,
         setPlace,
         accept,
         reject,
-        suggest,
     }
 
     return (

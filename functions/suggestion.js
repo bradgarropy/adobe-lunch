@@ -1,8 +1,10 @@
 const {getRandomElement} = require("./utils/utils")
 const {search, details} = require("./utils/foursquare")
 
-const handler = async () => {
-    const data = await search()
+const handler = async req => {
+    const options = JSON.parse(req.body)
+
+    const data = await search(options)
 
     const places = data.response.venues
     const place = getRandomElement(places)
